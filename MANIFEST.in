@@ -1,0 +1,5 @@
+include CHANGELOG.rst
+include LICENSE.txt
+include README.md
+include requirements/base.in
+recursive-include eox_hooks *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
