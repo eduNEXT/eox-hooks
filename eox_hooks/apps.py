@@ -38,5 +38,16 @@ class EoxHooksConfig(AppConfig):
                 'test': {'relative_path': 'settings.test'},
                 'production': {'relative_path': 'settings.production'},
             },
-        }
+        },
+        'signals_config': {
+            'lms.djangoapp': {
+                'relative_path': 'receivers',
+                'receivers': [
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'django.core.signals.request_started',
+                    },
+                ],
+            }
+        },
     }
