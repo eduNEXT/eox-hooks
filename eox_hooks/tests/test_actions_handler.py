@@ -7,7 +7,8 @@ from django.test import TestCase
 from mock import Mock, patch
 from testfixtures import LogCapture
 
-from eox_hooks.actions_handler import action_handler, action_lookup
+from eox_hooks.actions_handler import action_handler, action_lookup, audit_action_execution
+from eox_hooks.constants import Status
 
 
 class TestActionHandler(TestCase):
@@ -32,20 +33,16 @@ class TestActionHandler(TestCase):
 
         action_mock.assert_called_once()
 
+    @patch("eox_hooks.actions_handler.audit_action_execution")
     @patch("eox_hooks.actions_handler.action_lookup")
-    def test_action_fail_silently(self, action_lookup_mock):
-        """Used to test executing custom action that fails silently."""
+    def test_action_fail_silently(self, action_lookup_mock, audit_execution):
+        """Used to test executing custom action that fails silently, i.e without raising an exception."""
         action_mock = Mock()
         action_lookup_mock.return_value = action_mock
+        audit_execution.return_value = None
         action_mock.side_effect = Exception()
-        log_message = "The action {} with triggered by {} failed.".format(action_mock,
-                                                                          self.trigger_event)
 
-        with LogCapture() as log:
-            action_handler(self.trigger_event, self.configuration)
-            log.check(("eox_hooks.actions_handler",
-                       "ERROR",
-                       log_message))
+        self.assertIsNone(action_handler(self.trigger_event, self.configuration))
 
     @patch("eox_hooks.actions_handler.action_lookup")
     def test_action_not_fail_silent(self, action_lookup_mock):
@@ -64,6 +61,22 @@ class TestActionHandler(TestCase):
         with self.assertRaises(Exception):
             action_handler(self.trigger_event, configuration)
 
+    @patch("eox_hooks.actions_handler.audit_action_execution")
+    @patch("eox_hooks.actions_handler.action_lookup")
+    def test_do_not_audit_action(self, action_lookup_mock, audit_mock):
+        """Used to test not auditing action execution using a specific configuration."""
+        action_mock = Mock()
+        action_lookup_mock.return_value = action_mock
+        configuration = {
+            "module": "eox_hooks.tests.test_utils",
+            "action": "custom_action_mock",
+            "use_audit": False,
+        }
+
+        action_handler(self.trigger_event, configuration)
+
+        audit_mock.assert_not_called()
+
 
 class TestActionLookup(TestCase):
     """ActionLookup test class."""
@@ -79,36 +92,61 @@ class TestActionLookup(TestCase):
 
     @patch("eox_hooks.actions_handler.custom_action_mock")
     def test_with_non_existent_action(self, custom_action_mock):
-        """Used to test what happends if a non-existent action is passed."""
+        """Used to test what happends if a non-existent action is used."""
         module_name, action = "eox_hooks.tests.test_utils", "non_existent_action"
-        log_message = "The action {} does not exist in the module {}. A default action will be used."\
-                      .format(
-                            action,
-                            module_name,
-                        )
+        log_message = "The action {} does not exist in the module {}. A default action will be used.".format(
+            action,
+            module_name,
+        )
 
         with LogCapture() as log:
             action = action_lookup(module_name, action)
             log.check(("eox_hooks.actions_handler",
                        "WARNING",
-                       log_message))
-
-        self.assertEqual(action, custom_action_mock)
+                       "EOX_HOOKS | " + log_message))
+            self.assertEqual(action, custom_action_mock)
 
     @patch("eox_hooks.actions_handler.custom_action_mock")
     def test_with_non_existent_module(self, custom_action_mock):
         """Used to test what happends if a non-existent module is passed."""
         module_name, action = "non_existent_module", "custom_action_mock"
-        log_message = "The module {} with the action {} does not exist. A default action will be used."\
-                      .format(
-                          module_name,
-                          action,
-                        )
+        log_message = "The module {} with the action {} does not exist. A default action will be used.".format(
+            module_name,
+            action,
+        )
 
         with LogCapture() as log:
             action = action_lookup(module_name, action)
             log.check(("eox_hooks.actions_handler",
                        "WARNING",
-                       log_message))
+                       "EOX_HOOKS | " + log_message))
+            self.assertEqual(action, custom_action_mock)
 
-        self.assertEqual(action, custom_action_mock)
+
+class TestAuditActionExecution(TestCase):
+    """Action Audit test class."""
+
+    @patch("eox_hooks.models.HookExecutionAudit.objects.create")
+    def test_audit_execution_success(self, audit_model):
+        """Used to test `saving` successful execution of an action."""
+        audit_object = Mock()
+        audit_model.return_value = audit_object
+        trigger_event = Mock()
+        action = Mock()
+
+        self.assertIsNone(audit_action_execution(Status.SUCCESS, trigger_event, action))
+        audit_model.assert_called()
+
+    @patch("eox_hooks.models.HookExecutionAudit.objects.create")
+    def test_audit_execution_failure(self, audit_model):
+        """Used to test logging failed execution of an action."""
+        audit_object = Mock()
+        audit_model.return_value = audit_object
+        trigger_event = Mock()
+        action = Mock()
+
+        with LogCapture() as log:
+            audit_action_execution(Status.FAIL, trigger_event, action)
+            log.check(("eox_hooks.actions_handler",
+                       "ERROR",
+                       "EOX_HOOKS | " + str(audit_object)))
