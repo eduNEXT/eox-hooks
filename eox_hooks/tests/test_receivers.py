@@ -58,8 +58,8 @@ class TestReceivers(TestCase):
         action_handler.assert_not_called()
 
     @override_settings(EOX_HOOKS_DEFINITIONS={})
-    @patch("eox_hooks.actions_handler.custom_action_mock")
-    def test_without_hooks_configuration_defined(self, custom_action_mock):
+    @patch("eox_hooks.actions_handler.default_action")
+    def test_without_hooks_configuration_defined(self, default_action):
         """
         Used to test what happends if the current tenant is using eox-hooks but there is not a
         configuration defined.
@@ -68,4 +68,4 @@ class TestReceivers(TestCase):
         """
         hooks_handler(self.sender, self.signal)
 
-        custom_action_mock.assert_not_called()
+        default_action.assert_not_called()

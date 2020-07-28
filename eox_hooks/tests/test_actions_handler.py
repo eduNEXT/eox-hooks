@@ -17,8 +17,8 @@ class TestActionHandler(TestCase):
         """Set up class for ActionHandler testing."""
         self.trigger_event = "trigger_event"
         self.configuration = {
-            "module": "eox_hooks.tests.test_utils",
-            "action": "custom_action_mock",
+            "module": "eox_hooks.actions",
+            "action": "default_action",
             "fail_silently": True,
         }
 
@@ -56,8 +56,8 @@ class TestActionHandler(TestCase):
         action_mock.side_effect = Exception()
         action_lookup_mock.return_value = action_mock
         configuration = {
-            "module": "eox_hooks.tests.test_utils",
-            "action": "custom_action_mock",
+            "module": "eox_hooks.actions",
+            "action": "default_action",
             "fail_silently": False,
         }
 
@@ -68,19 +68,19 @@ class TestActionHandler(TestCase):
 class TestActionLookup(TestCase):
     """ActionLookup test class."""
 
-    @patch("eox_hooks.tests.test_utils.custom_action_mock")
-    def test_return_specified_action(self, custom_action_mock):
+    @patch("eox_hooks.actions.default_action")
+    def test_return_specified_action(self, default_action):
         """Used to verify the successful lookup of an existent task."""
-        module_name, action = "eox_hooks.tests.test_utils", "custom_action_mock"
+        module_name, action = "eox_hooks.actions", "default_action"
 
         action = action_lookup(module_name, action)
 
-        self.assertEqual(action, custom_action_mock)
+        self.assertEqual(action, default_action)
 
-    @patch("eox_hooks.actions_handler.custom_action_mock")
-    def test_with_non_existent_action(self, custom_action_mock):
+    @patch("eox_hooks.actions_handler.default_action")
+    def test_with_non_existent_action(self, default_action):
         """Used to test what happends if a non-existent action is passed."""
-        module_name, action = "eox_hooks.tests.test_utils", "non_existent_action"
+        module_name, action = "eox_hooks.actions_handler", "non_existent_action"
         log_message = "The action {} does not exist in the module {}. A default action will be used."\
                       .format(
                             action,
@@ -93,12 +93,12 @@ class TestActionLookup(TestCase):
                        "WARNING",
                        log_message))
 
-        self.assertEqual(action, custom_action_mock)
+        self.assertEqual(action, default_action)
 
-    @patch("eox_hooks.actions_handler.custom_action_mock")
-    def test_with_non_existent_module(self, custom_action_mock):
+    @patch("eox_hooks.actions_handler.default_action")
+    def test_with_non_existent_module(self, default_action):
         """Used to test what happends if a non-existent module is passed."""
-        module_name, action = "non_existent_module", "custom_action_mock"
+        module_name, action = "non_existent_module", "default_action"
         log_message = "The module {} with the action {} does not exist. A default action will be used."\
                       .format(
                           module_name,
@@ -111,4 +111,4 @@ class TestActionLookup(TestCase):
                        "WARNING",
                        log_message))
 
-        self.assertEqual(action, custom_action_mock)
+        self.assertEqual(action, default_action)

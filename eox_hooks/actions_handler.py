@@ -2,7 +2,7 @@
 import logging
 from importlib import import_module
 
-from eox_hooks.tests.test_utils import custom_action_mock
+from eox_hooks.actions import default_action
 
 log = logging.getLogger(__name__)
 
@@ -50,4 +50,4 @@ def action_lookup(module_name, action):
                     )
 
     log.warning(message)
-    return custom_action_mock
+    return default_action
