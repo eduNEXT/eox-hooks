@@ -27,19 +27,18 @@ def hooks_handler(sender, **kwargs):
         log.warning("Hook with name {} not configured in the current tenant, a default hook will be used."
                     .format(current_sender))
 
-    current_configuration = settings.EOX_HOOKS_DEFINITIONS.get(current_sender)
-    current_configuration = __check_current_configuration(current_configuration)
-    __task_executer(current_configuration, current_sender, **kwargs)
+    current_configuration = settings.EOX_HOOKS_DEFINITIONS.get(current_sender, {})
+    __task_executer(current_sender, current_configuration, **kwargs)
 
 
-def __task_executer(configuration, sender, **kwargs):
+def __task_executer(sender, configuration, **kwargs):
     """
     Function that executes tasks given a specific configuration.
 
     This function also starts the timer for the timing feature and set the tasks as async/sync.
     This given the current configuration.
     """
-    task = configuration.get("task")
+    task = __task_lookup(configuration.get("task"))
     try:
         task(sender=sender, **kwargs)
         audit_entry = HookExecutionAudit.objects.create(
@@ -57,25 +56,6 @@ def __task_executer(configuration, sender, **kwargs):
             tenant_domain="tenant_domain"
         )
         log.warning(str(audit_entry))
-
-
-def __check_current_configuration(configuration):
-    """
-    TODO: fix this docstring
-    Function that makes sure that the configuration passed has the correct fields.
-    """
-    if not configuration:
-        configuration = {}
-
-    configuration["task"] = __task_lookup(configuration.get("task"))
-
-    if not configuration.get("timing"):
-        log.info("The task {} will be executed without timing.".format(configuration.get("task")))
-
-    if not configuration.get("async"):
-        log.info("The task {} will be executed asynchronously.".format(configuration.get("task")))
-
-    return configuration
 
 
 def __task_lookup(path):
