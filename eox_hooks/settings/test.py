@@ -16,6 +16,8 @@ INSTALLED_APPS = [
 
 TIME_ZONE = 'UTC'
 
+EDNX_TENANT_DOMAIN = "example_domain"
+
 # This key needs to be defined so that the check_apps_ready passes and the
 # AppRegistry is loaded
 DATABASES = {

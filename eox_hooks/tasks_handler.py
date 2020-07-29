@@ -2,6 +2,8 @@
 import logging
 from importlib import import_module
 
+from django.conf import settings
+
 from eox_hooks.constants import Status
 from eox_hooks.models import HookExecutionAudit
 
@@ -57,7 +59,7 @@ def audit_task_execution(status, sender, task, execution_time=None):
         status=status,
         hook_name=sender,
         task_name=task.__name__,
-        tenant_domain="tenant_domain",
+        tenant_domain=getattr(settings, "EDNX_TENANT_DOMAIN", "default_tenant_domain"),
         task_duration=execution_time
     )
     if status == Status.SUCCESS:
