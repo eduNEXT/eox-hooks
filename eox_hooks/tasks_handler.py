@@ -4,11 +4,12 @@ from importlib import import_module
 
 from eox_hooks.constants import Status
 from eox_hooks.models import HookExecutionAudit
+from eox_hooks.tasks import BaseTask
 
 log = logging.getLogger(__name__)
 
 DEFAULT_TASK_MODULE = "eox_hooks.tasks"
-DEFAULT_TASK_NAME = "default_task"
+DEFAULT_TASK_NAME = "DefaultTask"
 
 
 def task_handler(sender, configuration, **kwargs):
@@ -20,12 +21,12 @@ def task_handler(sender, configuration, **kwargs):
     except AttributeError:
         module_name, task = DEFAULT_TASK_MODULE, DEFAULT_TASK_NAME
 
-    task = task_lookup(module_name, task)
-    try:
-        task(sender=sender, **kwargs)
-        audit_task_execution(Status.SUCCESS, sender, task)
-    except Exception:  # pylint: disable=broad-except
-        audit_task_execution(Status.FAIL, sender, task)
+    task = task_lookup(module_name, task)()
+
+    if not configuration.get("sync"):
+        task.apply_async(sender=sender, **kwargs)
+    else:
+        task.apply(sender=sender, **kwargs)
 
 
 def task_lookup(module_name, task):

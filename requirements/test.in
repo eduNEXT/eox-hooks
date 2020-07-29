@@ -3,6 +3,7 @@
 
 pycodestyle
 pylint
+celery
 coverage
 mock
 testfixtures
