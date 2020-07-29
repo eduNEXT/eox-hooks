@@ -13,6 +13,7 @@ from eox_hooks.receivers import hooks_handler
     EOX_HOOKS_DEFINITIONS={
         "sender.example": {
             "task": "eox_hooks.tests.test_utils.custom_task_mock",
+            "sync": True,
         },
     },
     USE_EOX_HOOKS=True)
@@ -37,10 +38,11 @@ class TestReceivers(TestCase):
         EOX_HOOKS_DEFINITIONS={
             "sender.example": {
                 "task": "eox_hooks.tests.test_utils.custom_task_mock",
+                "sync": True,
             },
         },
         USE_EOX_HOOKS=True)
-    @patch('eox_hooks.receivers.log.warning')
+    @patch('eox_hooks.tasks_handler.log.warning')
     @patch("eox_hooks.tests.test_utils.custom_task_mock")
     def test_executing_task_raise_exception(self, custom_task_mock, log):
         """Used to test executing custom task when hook setting is set to true."""
@@ -61,38 +63,10 @@ class TestReceivers(TestCase):
 
         custom_task_mock.assert_not_called()
 
-    @patch("eox_hooks.tasks.default_task")
-    def test_with_non_defined_signal(self, default_task):
-        """
-        Used to test what happends when a not configured signal is received.
-
-        This should result in the calling of a default task.
-        """
-        default_task.__name__ = "default_task"
-        self.sender.__name__ = "sender.signal"
-
-        hooks_handler(self.sender)
-
-        default_task.assert_called()
-
-    @override_settings(EOX_HOOKS_DEFINITIONS={})
-    @patch("eox_hooks.tasks.default_task")
-    def test_without_hooks_configuration_defined(self, default_task):
-        """
-        Used to test what happends if the current tenant is using eox-hooks but there is not a
-        configuration defined.
-
-        This should result in the calling of a default task.
-        """
-        default_task.__name__ = "default_task"
-
-        hooks_handler(self.sender)
-
-        default_task.assert_called()
-
     @override_settings(EOX_HOOKS_DEFINITIONS={
         "sender.example": {
             "task": "eox_hooks.tests.test_utils.non_existent_task",
+            "sync": True,
         }},
         USE_EOX_HOOKS=True)
     @patch("eox_hooks.tasks.default_task")
@@ -111,6 +85,7 @@ class TestReceivers(TestCase):
     @override_settings(EOX_HOOKS_DEFINITIONS={
         "sender.example": {
             "task": "eox_hooks.tests.non_existent.custom_task_mock",
+            "sync": True,
         }},
         USE_EOX_HOOKS=True)
     @patch("eox_hooks.tasks.default_task")
