@@ -5,6 +5,7 @@ from importlib import import_module
 from django.conf import settings
 
 from eox_hooks.constants import Status
+from eox_hooks.helpers import Timer
 from eox_hooks.models import HookExecutionAudit
 
 log = logging.getLogger(__name__)
@@ -23,9 +24,12 @@ def task_handler(sender, configuration, **kwargs):
         module_name, task = DEFAULT_TASK_MODULE, DEFAULT_TASK_NAME
 
     task = task_lookup(module_name, task)
+    timer = Timer(configuration.get("timing"))
     try:
+        timer.start()
         task(sender=sender, **kwargs)
-        audit_task_execution(Status.SUCCESS, sender, task)
+        execution_time = timer.stop()
+        audit_task_execution(Status.SUCCESS, sender, task, execution_time)
     except Exception:  # pylint: disable=broad-except
         audit_task_execution(Status.FAIL, sender, task)
 
