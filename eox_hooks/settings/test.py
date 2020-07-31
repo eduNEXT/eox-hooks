@@ -16,6 +16,16 @@ INSTALLED_APPS = [
 
 TIME_ZONE = 'UTC'
 
+EOX_HOOKS_DEFINITIONS = {
+    "sender.example": {
+        "module": "eox_hooks.tests.test_utils",
+        "action": "custom_action_mock",
+        "fail_silently": True,
+    },
+}
+
+USE_EOX_HOOKS = True
+
 # This key needs to be defined so that the check_apps_ready passes and the
 # AppRegistry is loaded
 DATABASES = {
