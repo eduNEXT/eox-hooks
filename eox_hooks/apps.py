@@ -43,11 +43,11 @@ class EoxHooksConfig(AppConfig):
             'lms.djangoapp': {
                 'relative_path': 'receivers',
                 'receivers': [
-                    # {
-                    #     'receiver_func_name': 'hooks_handler',
-                    #     'signal_path': 'openedx.core.lib.triggers.v1.dashboard_call',
-                    #     'dispatch_uid': 'eox-hooks:dashboard_call',
-                    # },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx.core.lib.triggers.v1.pre_enrollment',
+                        'dispatch_uid': 'eox-hooks:pre_enrollment',
+                    },
                 ],
             }
         },
