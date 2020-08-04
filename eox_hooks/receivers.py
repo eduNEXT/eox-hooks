@@ -34,4 +34,4 @@ def hooks_handler(sender, signal, **kwargs):
         return
 
     current_configuration = settings.EOX_HOOKS_DEFINITIONS.get(trigger_event, {})
-    action_handler(trigger_event, current_configuration, sender=sender, **kwargs)
+    return action_handler(trigger_event, current_configuration, sender=sender, **kwargs)
