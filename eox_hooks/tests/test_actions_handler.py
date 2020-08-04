@@ -77,38 +77,30 @@ class TestActionLookup(TestCase):
 
         self.assertEqual(action, custom_action_mock)
 
-    @patch("eox_hooks.actions_handler.custom_action_mock")
-    def test_with_non_existent_action(self, custom_action_mock):
+    def test_with_non_existent_action(self):
         """Used to test what happends if a non-existent action is passed."""
         module_name, action = "eox_hooks.tests.test_utils", "non_existent_action"
-        log_message = "The action {} does not exist in the module {}. A default action will be used."\
-                      .format(
-                            action,
-                            module_name,
-                        )
+        log_message = "The action {} does not exist in the module {}.".format(
+            action,
+            module_name,
+        )
 
         with LogCapture() as log:
             action = action_lookup(module_name, action)
             log.check(("eox_hooks.actions_handler",
-                       "WARNING",
+                       "ERROR",
                        log_message))
 
-        self.assertEqual(action, custom_action_mock)
-
-    @patch("eox_hooks.actions_handler.custom_action_mock")
-    def test_with_non_existent_module(self, custom_action_mock):
+    def test_with_non_existent_module(self):
         """Used to test what happends if a non-existent module is passed."""
         module_name, action = "non_existent_module", "custom_action_mock"
-        log_message = "The module {} with the action {} does not exist. A default action will be used."\
-                      .format(
-                          module_name,
-                          action,
-                        )
+        log_message = "The module {} with the action {} does not exist.".format(
+            module_name,
+            action,
+        )
 
         with LogCapture() as log:
             action = action_lookup(module_name, action)
             log.check(("eox_hooks.actions_handler",
-                       "WARNING",
+                       "ERROR",
                        log_message))
-
-        self.assertEqual(action, custom_action_mock)
