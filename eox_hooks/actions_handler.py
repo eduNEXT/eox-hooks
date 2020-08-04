@@ -2,12 +2,10 @@
 import logging
 from importlib import import_module
 
-from eox_hooks.tests.test_utils import custom_action_mock
-
 log = logging.getLogger(__name__)
 
 
-def action_handler(trigget_event, configuration, **kwargs):
+def action_handler(trigger_event, configuration, **kwargs):
     """
     Function that executes actions given a specific configuration.
     """
@@ -16,11 +14,14 @@ def action_handler(trigget_event, configuration, **kwargs):
         action=configuration.get("action", ""),
     )
 
+    if not action:
+        return
+
     try:
         action(**kwargs)
-        log.info("The action {} with triggered by {} ended successfully.".format(action, trigget_event))
+        log.info("The action {} with triggered by {} ended successfully.".format(action, trigger_event))
     except Exception as exception:  # pylint: disable=broad-except
-        log.error("The action {} with triggered by {} failed.".format(action, trigget_event))
+        log.error("The action {} with triggered by {} failed.".format(action, trigger_event))
 
         if not configuration.get("fail_silently"):
             raise exception
@@ -37,17 +38,14 @@ def action_lookup(module_name, action):
         module = import_module(module_name)
         return getattr(module, action)
     except ImportError:
-        message = "The module {} with the action {} does not exist. A default action will be used."\
-                  .format(
-                      module_name,
-                      action,
-                    )
+        message = "The module {} with the action {} does not exist.".format(
+            module_name,
+            action,
+        )
     except AttributeError:
-        message = "The action {} does not exist in the module {}. A default action will be used."\
-                  .format(
-                      action,
-                      module.__name__,
-                    )
+        message = "The action {} does not exist in the module {}.".format(
+            action,
+            module.__name__,
+        )
 
-    log.warning(message)
-    return custom_action_mock
+    log.error(message)
