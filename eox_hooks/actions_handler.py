@@ -15,17 +15,19 @@ def action_handler(trigger_event, configuration, **kwargs):
     )
 
     if not action:
-        return
+        return None
 
+    action_result = None
     try:
-        result = action(**kwargs)
+        action_result = action(**kwargs)
         log.info("The action {} with triggered by {} ended successfully.".format(action, trigger_event))
-        return result
     except Exception as exception:  # pylint: disable=broad-except
         log.error("The action {} with triggered by {} failed.".format(action, trigger_event))
 
         if not configuration.get("fail_silently"):
             raise exception
+
+    return action_result
 
 
 def action_lookup(module_name, action):
