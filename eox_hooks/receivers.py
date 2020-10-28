@@ -22,7 +22,7 @@ def _get_dispatch_uid(receivers):
 def hooks_handler(sender, signal, **kwargs):
     """Eox-hooks signal receiver."""
     if not getattr(settings, "USE_EOX_HOOKS", False) or not settings.EOX_HOOKS_DEFINITIONS:
-        return
+        return None
 
     trigger_event = None
     for uid in _get_dispatch_uid(signal.receivers):
@@ -31,7 +31,7 @@ def hooks_handler(sender, signal, **kwargs):
             break
 
     if trigger_event not in settings.EOX_HOOKS_DEFINITIONS:
-        return
+        return None
 
     current_configuration = settings.EOX_HOOKS_DEFINITIONS.get(trigger_event, {})
-    action_handler(trigger_event, current_configuration, sender=sender, **kwargs)
+    return action_handler(trigger_event, current_configuration, sender=sender, **kwargs)
