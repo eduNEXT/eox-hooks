@@ -71,6 +71,11 @@ class EoxHooksConfig(AppConfig):
                         'signal_path': get_signal_module("pre_enrollment"),
                         'dispatch_uid': 'eox-hooks:pre_enrollment',
                     },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': get_signal_module("post_certificate_creation"),
+                        'dispatch_uid': "eox-hooks:post_certificate_creation",
+                    },
                 ],
             }
         },

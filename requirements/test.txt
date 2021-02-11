@@ -5,20 +5,19 @@
 #    make upgrade
 #
 astroid==1.6.6            # via pylint
-backports.functools-lru-cache==1.6.1  # via astroid, isort, pylint
-configparser==4.0.2       # via pylint
-coverage==5.3             # via -r requirements/test.in
-enum34==1.1.10            # via astroid
-funcsigs==1.0.2           # via mock
-futures==3.3.0 ; python_version == "2.7"  # via -c requirements/constraints.txt, isort
+certifi==2020.12.5        # via requests
+chardet==4.0.0            # via requests
+coverage==5.4             # via -r requirements/test.in
+idna==2.10                # via requests
 isort==4.3.21             # via pylint
-lazy-object-proxy==1.5.1  # via astroid
+lazy-object-proxy==1.5.2  # via astroid
 mccabe==0.6.1             # via pylint
 mock==3.0.5               # via -r requirements/test.in
 pycodestyle==2.5.0        # via -c requirements/constraints.txt, -r requirements/test.in
 pylint==1.9.3             # via -c requirements/constraints.txt, -r requirements/test.in
-pytz==2020.1              # via -r requirements/base.txt, django
-singledispatch==3.4.0.3   # via astroid, pylint
-six==1.15.0               # via astroid, mock, pylint, singledispatch
+pytz==2021.1              # via -r requirements/base.txt, django
+requests==2.25.1          # via -r requirements/test.in
+six==1.15.0               # via astroid, mock, pylint
 testfixtures==6.4.3       # via -c requirements/constraints.txt, -r requirements/test.in
+urllib3==1.26.3           # via requests
 wrapt==1.12.1             # via astroid

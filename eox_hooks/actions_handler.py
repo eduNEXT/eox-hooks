@@ -19,6 +19,7 @@ def action_handler(trigger_event, configuration, **kwargs):
 
     action_result = None
     try:
+        kwargs["trigger_event"] = trigger_event
         action_result = action(**kwargs)
         log.info("The action {} triggered by {} ended successfully.".format(action, trigger_event))
     except Exception as exception:  # pylint: disable=broad-except

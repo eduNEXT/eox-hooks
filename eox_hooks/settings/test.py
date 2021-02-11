@@ -26,6 +26,8 @@ EOX_HOOKS_DEFINITIONS = {
 
 USE_EOX_HOOKS = True
 
+EOX_HOOKS_TEST_ENVIRONMENT = True
+
 # This key needs to be defined so that the check_apps_ready passes and the
 # AppRegistry is loaded
 DATABASES = {
