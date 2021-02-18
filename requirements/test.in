@@ -6,3 +6,4 @@ pylint
 coverage
 mock
 testfixtures
+requests
