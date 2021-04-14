@@ -12,10 +12,14 @@ Change Log
 Unreleased
 ----------
 
+[0.5.0] - 2021-04-13
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Added post_register signal configuration.
+
 [0.4.0] - 2021-02-18
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Added
-~~~~~
+
 * Added post_to_webhook_url action.
 
 [0.3.0] - 2020-11-11
