@@ -76,6 +76,11 @@ class EoxHooksConfig(AppConfig):
                         'signal_path': get_signal_module("post_certificate_creation"),
                         'dispatch_uid': "eox-hooks:post_certificate_creation",
                     },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': get_signal_module("post_register"),
+                        'dispatch_uid': "eox-hooks:post_register",
+                    },
                 ],
             }
         },
