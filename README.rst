@@ -41,7 +41,11 @@ Where:
 - fail_silently: defines what happens if an exception raises while executing the action. If False, then the exception is raised.
 
 
-Contributing
-############
+How to Contribute
+#################
 
-Add your contribution policy. (If required)
+Contributions are welcome! See our `CONTRIBUTING`_ file for more
+information – it also contains guidelines for how to maintain high code
+quality, which will make your contribution more likely to be accepted.
+
+.. _CONTRIBUTING: https://github.com/eduNEXT/eox-hooks/blob/master/CONTRIBUTING.rst
