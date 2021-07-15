@@ -20,7 +20,9 @@ def _get_dispatch_uid(receivers):
 
 
 def hooks_handler(sender, signal, **kwargs):
-    """Eox-hooks signal receiver."""
+    """
+    Eox-hooks signal receiver.
+    """
     if not getattr(settings, "USE_EOX_HOOKS", False) or not settings.EOX_HOOKS_DEFINITIONS:
         return None
 

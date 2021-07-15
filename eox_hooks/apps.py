@@ -68,18 +68,23 @@ class EoxHooksConfig(AppConfig):
                 'receivers': [
                     {
                         'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module("pre_enrollment"),
+                        'signal_path': get_signal_module('pre_enrollment'),
                         'dispatch_uid': 'eox-hooks:pre_enrollment',
                     },
                     {
                         'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module("post_certificate_creation"),
-                        'dispatch_uid': "eox-hooks:post_certificate_creation",
+                        'signal_path': get_signal_module('post_certificate_creation'),
+                        'dispatch_uid': 'eox-hooks:post_certificate_creation',
                     },
                     {
                         'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module("post_register"),
-                        'dispatch_uid': "eox-hooks:post_register",
+                        'signal_path': get_signal_module('post_register'),
+                        'dispatch_uid': 'eox-hooks:post_register',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': get_signal_module('post_register_api'),
+                        'dispatch_uid': 'eox-hooks:post_register_api',
                     },
                 ],
             }
