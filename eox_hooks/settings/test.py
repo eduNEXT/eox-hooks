@@ -35,3 +35,9 @@ DATABASES = {
         'NAME': 'db.sqlite3',
     }
 }
+
+EOX_CORE_LOAD_PERMISSIONS = False
+EOX_CORE_COURSES_BACKEND = "eox_core.edxapp_wrapper.backends.courses_h_v1"
+EOX_CORE_COURSEKEY_BACKEND = "eox_core.edxapp_wrapper.backends.coursekey_h_v1"
+EOX_CORE_USERS_BACKEND = "eox_core.edxapp_wrapper.backends.users_h_v1_test"
+EOX_CORE_BEARER_AUTHENTICATION = 'eox_core.edxapp_wrapper.backends.bearer_authentication_j_v1_test'

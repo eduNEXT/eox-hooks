@@ -17,3 +17,5 @@ pycodestyle==2.6.0
 # Keep same platform version
 djangorestframework==3.9.4
 testfixtures==6.4.3
+newrelic<=6.0
+edx-opaque-keys==2.1.0
