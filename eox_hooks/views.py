@@ -3,7 +3,6 @@
 Methods:
     info_view: Show basic plugin information.
 """
-from __future__ import unicode_literals
 
 from os.path import dirname, realpath
 from subprocess import CalledProcessError, check_output

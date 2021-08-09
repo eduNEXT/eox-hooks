@@ -15,7 +15,7 @@ class CertificateSerializer(serializers.ModelSerializer):
     """
     created_date = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
 
-    class Meta(object):
+    class Meta:
         """Meta class."""
         model = get_openedx_certificate_model()
         fields = '__all__'
@@ -28,7 +28,7 @@ class RetirementUserProfileSerializer(serializers.ModelSerializer):
     country = serializers.CharField(read_only=True)
     meta = serializers.SerializerMethodField(read_only=True)
 
-    class Meta(object):
+    class Meta:
         """Meta class."""
         model = get_openedx_user_profile_model()
         fields = '__all__'
@@ -48,7 +48,7 @@ class UserSerializer(serializers.ModelSerializer):
     """
     profile = RetirementUserProfileSerializer(read_only=True)
 
-    class Meta(object):
+    class Meta:
         """Meta class."""
         model = get_user_model()
         exclude = ['password']

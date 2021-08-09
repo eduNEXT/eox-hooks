@@ -2,8 +2,6 @@
 Production Django settings for eox_hooks project.
 """
 
-from __future__ import unicode_literals
-
 
 def plugin_settings(settings):  # pylint: disable=unused-argument
     """
