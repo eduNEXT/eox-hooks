@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-astroid==2.3.3
+astroid==2.4.2
     # via pylint
 certifi==2021.5.30
     # via requests
@@ -32,7 +32,7 @@ pycodestyle==2.6.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.in
-pylint==2.4.2
+pylint==2.5.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.in
@@ -54,9 +54,11 @@ testfixtures==6.4.3
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.in
+toml==0.10.2
+    # via pylint
 typed-ast==1.4.3
     # via astroid
 urllib3==1.26.6
     # via requests
-wrapt==1.11.2
+wrapt==1.12.1
     # via astroid
