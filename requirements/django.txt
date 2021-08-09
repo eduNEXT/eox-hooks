@@ -1,2 +1,0 @@
-django==1.11.29           # via -r requirements/base.txt
-djangorestframework==3.6.3  # via -c requirements/constraints.txt, -r requirements/base.txt
