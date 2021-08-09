@@ -9,9 +9,9 @@
 # linking to it here is good.
 
 # TODO: Add constraint explanation
-pylint==2.4.2
-pycodestyle==2.6.0
 
 # Keep same platform version
+pylint==2.4.2
+pycodestyle==2.6.0
 djangorestframework==3.9.4
 testfixtures==6.4.3
