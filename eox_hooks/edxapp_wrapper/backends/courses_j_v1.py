@@ -3,6 +3,7 @@ Backend file for Courses.
 """
 
 
+# pylint: disable=import-error, import-outside-toplevel
 def get_course_overview():
     """
     Gets Course Overview class model from edxapp.
@@ -11,7 +12,7 @@ def get_course_overview():
         [Class]: Course Overview edxapp model.
     """
     try:
-        from openedx.core.djangoapps.content.course_overviews.models import CourseOverview  # pylint: disable=import-error
+        from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
     except ImportError:
         CourseOverview = object
     return CourseOverview
