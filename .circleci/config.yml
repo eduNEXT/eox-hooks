@@ -14,11 +14,13 @@ workflows:
               only: /v?[0-9]+(\.[0-9]+)*/
           matrix:
             parameters:
-              python_version: ["2.7", "3.5"]
-              django_version: ["django111", "django22"]
+              python_version: ["3.5", "3.8"]
+              debian_version: ["stretch", "buster"]
             exclude:
-              - python_version: "2.7"
-                django_version: "django22"
+              - python_version: "3.8"
+                debian_version: "stretch"
+              - python_version: "3.5"
+                debian_version: "buster"
       - pypi:
           requires:
             - test
@@ -32,6 +34,7 @@ jobs:
     parameters:
       django_version:
         type: string
+        default: django22
       python_version:
         type: string
       debian_version:
@@ -72,6 +75,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
+            export TOX_ENV=$PY_ENV-$DJANGO_ENV
             export TOXENV=${TOX_ENV//./}
             make run-tests
 
@@ -82,7 +86,8 @@ jobs:
           key: v2-<< parameters.python_version >>-<< parameters.django_version >>-dependencies-{{ checksum "requirements/test.txt" }}
 
     environment:
-      - TOX_ENV: py<< parameters.python_version >>-<< parameters.django_version >>
+      - PY_ENV: py<< parameters.python_version >>
+      - DJANGO_ENV: << parameters.django_version >>
 
   pypi:
     docker:
