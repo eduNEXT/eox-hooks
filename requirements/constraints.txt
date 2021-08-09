@@ -17,5 +17,8 @@ pycodestyle==2.6.0
 # Keep same platform version
 djangorestframework==3.9.4
 testfixtures==6.4.3
+
+# eox-core dependencies constraints
 newrelic<=6.0
 edx-opaque-keys==2.1.0
+edx-drf-extensions==6.0.0
