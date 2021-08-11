@@ -8,13 +8,12 @@
 # pin when possible.  Writing an issue against the offending project and
 # linking to it here is good.
 
-# Already in python3 standard library
-futures; python_version == "2.7"
+# This version avoids conflict with wrapt
+pylint==2.5.0
 
 # TODO: Add constraint explanation
-pylint==1.9.3
-pycodestyle==2.5.0
+pycodestyle==2.6.0
 
 # Keep same platform version
-djangorestframework==3.6.3
+djangorestframework==3.9.4
 testfixtures==6.4.3

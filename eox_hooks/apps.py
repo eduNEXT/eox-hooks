@@ -2,7 +2,6 @@
 App configuration for eox_hooks.
 """
 
-from __future__ import unicode_literals
 
 from importlib import import_module
 

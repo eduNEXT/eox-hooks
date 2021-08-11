@@ -2,7 +2,6 @@
 Init module for eox_hooks.
 """
 
-from __future__ import unicode_literals
 
 import django.dispatch
 

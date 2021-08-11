@@ -45,6 +45,6 @@ def get_trigger_settings(trigger_event):
 
 def _get_course(course_key):
     """Returns a course given its key."""
-    from xmodule.modulestore.django import modulestore  # pylint: disable=import-error
+    from xmodule.modulestore.django import modulestore  # pylint: disable=import-error,import-outside-toplevel
 
     return modulestore().get_course(course_key)
