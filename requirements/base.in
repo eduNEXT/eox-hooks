@@ -3,3 +3,5 @@
 
 Django
 djangorestframework
+edx-opaque-keys[django]
+celery

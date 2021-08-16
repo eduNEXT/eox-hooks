@@ -6,6 +6,7 @@ import logging
 import requests
 
 from eox_hooks.serializers import CertificateSerializer, CourseSerializer, UserSerializer
+from eox_hooks.tasks import create_enrollments_for_program
 from eox_hooks.utils import _get_course, flatten_dict, get_trigger_settings
 
 log = logging.getLogger(__name__)
@@ -112,3 +113,39 @@ def get_request_fields(fields, extra_fields, **kwargs):
         data[name] = field
 
     return data
+
+
+def trigger_enrollments_creation(**kwargs):
+    """
+    Custom action that starts an async task that enrolls a user in a list of courses.
+
+    After a user's enrollment to a Course Program, this action ensures that the
+    user is also enrolled in the courses that define the program.
+
+    If the course does not have the setting EDNX_TRIGGER_FOLLOWUP_ENROLLMENTS
+    in its other_course_settings, then no other enrollment is created.
+
+    The setting should look like this:
+
+    "EDNX_TRIGGER_FOLLOWUP_ENROLLMENTS": [
+        {
+            "course_id": "course-v1:Demo+CSTest+2020",
+            "mode": "honor"
+        }
+    ]
+
+    Keyword args:
+        course_key (str): course identifier.
+        user (User): user that just enrolled in the course.
+    """
+    course = _get_course(kwargs.get("course_key"))
+    user = kwargs.get("user")
+
+    followup_enrollments = getattr(course, "other_course_settings", {}).get(
+        "EDNX_TRIGGER_FOLLOWUP_ENROLLMENTS"
+    )
+
+    if not followup_enrollments:
+        return
+
+    create_enrollments_for_program.delay(user.username, followup_enrollments)

@@ -89,3 +89,10 @@ class EoxHooksConfig(AppConfig):
             }
         },
     }
+
+    # pylint: disable=import-outside-toplevel
+    def ready(self):
+        """
+        Make sure tasks are registered.
+        """
+        from eox_hooks import tasks  # pylint: disable=unused-import
