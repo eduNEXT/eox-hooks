@@ -27,6 +27,8 @@ USE_EOX_HOOKS = True
 
 EOX_HOOKS_TEST_ENVIRONMENT = True
 
+EOX_HOOKS_ENROLLMENTS_BACKEND = "eox_hooks.edxapp_wrapper.backends.enrollments_j_v1"
+
 # This key needs to be defined so that the check_apps_ready passes and the
 # AppRegistry is loaded
 DATABASES = {
