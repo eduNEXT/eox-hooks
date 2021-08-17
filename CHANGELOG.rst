@@ -11,6 +11,9 @@ Change Log
 .. There should always be an "Unreleased" section for changes pending release.
 Unreleased
 ----------
+
+[1.0.0] - 2021-08-17
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Drop support for python 2.7.
 * Add backends for course, enrollment and course modes.
 * Add custom action and task used to enroll users into program courses.
