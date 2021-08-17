@@ -12,6 +12,7 @@ Change Log
 Unreleased
 ----------
 * Drop support for python 2.7.
+* Add backends for course, enrollment and course modes.
 
 [0.5.0] - 2021-04-13
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

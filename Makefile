@@ -40,9 +40,9 @@ quality: clean ## check coding style with pycodestyle and pylint
 	$(TOX) pylint ./eox_hooks --rcfile=./setup.cfg
 	$(TOX) isort --check-only --recursive --diff ./eox_hooks
 
-test-python: clean ## Run test suite.
+test-python: clean ## Run test suite. Remove omitted files when tests are added.
 	$(TOX) pip install -r requirements/test.txt --exists-action w
 	$(TOX) coverage run --source ./eox_hooks manage.py test
-	$(TOX) coverage report -m --fail-under=80
+	$(TOX) coverage report -m --omit=eox_hooks/edxapp_wrapper/* --fail-under=80
 
 run-tests: test-python quality

@@ -1,5 +1,5 @@
 """
-Backend file for Course Enrollment.
+Backend file for Course Enrollment related objects.
 """
 
 
