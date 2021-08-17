@@ -13,6 +13,7 @@ Unreleased
 ----------
 * Drop support for python 2.7.
 * Add backends for course, enrollment and course modes.
+* Add custom action and task used to enroll users into program courses.
 
 [0.5.0] - 2021-04-13
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
