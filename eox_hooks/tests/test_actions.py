@@ -8,8 +8,9 @@ from unittest.mock import MagicMock, patch
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from opaque_keys.edx.keys import CourseKey
 
-from eox_hooks.actions import get_request_fields, trigger_enrollments_creation
+from eox_hooks.actions import get_request_fields, trigger_enrollments_creation, trigger_grades_assignment
 
 
 class TestPostToWebhookUrl(TestCase):
@@ -161,4 +162,125 @@ class TriggerEnrollmentsTest(TestCase):
                     "course_id": "course-v1:edX+DemoX+Demo_Course",
                 },
             ],
+        )
+
+
+class TriggerGradingTest(TestCase):
+    """
+    Test class for trigger grading for program.
+    """
+
+    load_xblock = patch("eox_hooks.actions.load_single_xblock")
+    get_course = patch("eox_hooks.actions._get_course")
+
+    def setUp(self):
+        """
+        Setup common conditions for test cases.
+        """
+        user = MagicMock(id=1, username="test")
+        self.certificate = MagicMock(user=user, grade=0.5)
+        self.kwargs = {
+            "certificate": self.certificate,
+        }
+        self.course_key = CourseKey.from_string("course-v1:edx+DemoX+Demo_Course")
+        self.grading_config = {
+            "block_id": "467f8ab131634e52bb6c22b60940d857",
+            "program_id": "course-v1:edx+DemoX+Demo_Course",
+        }
+        self.usage_key = self.course_key.make_usage_key(
+            "staffgradedxblock",
+            self.grading_config.get("block_id")
+        )
+
+    @load_xblock
+    @get_course
+    def test_course_without_settings(self, get_course, load_xblock):
+        """
+        Tests action when the user gets a certificate from a course without other_course_settings.
+        This is a version of a course not configured as part of a program.
+
+        Expected behavior:
+            - Action returns without propagating grading.
+        """
+        mock_course = MagicMock()
+        del mock_course.other_course_settings
+        get_course.return_value = mock_course
+
+        trigger_grades_assignment(**self.kwargs)
+
+        load_xblock.return_value.runtime.publish.assert_not_called()
+
+    @load_xblock
+    @get_course
+    def test_missing_grade_config(self, get_course, load_xblock):
+        """
+        Tests action when the user gets a certificate from a course without grading
+        configuration.
+        This is a version of a course not configured as program.
+
+        Expected behavior:
+            - Action returns without propagating grading.
+        """
+        mock_course = MagicMock(
+            other_course_settings={
+                "other_setting": "other_setting_value",
+            }
+        )
+        get_course.return_value = mock_course
+
+        trigger_grades_assignment(**self.kwargs)
+
+        load_xblock.return_value.runtime.publish.assert_not_called()
+
+    @load_xblock
+    @get_course
+    def test_trigger_passing_grade(self, get_course, load_xblock):
+        """
+        Tests action when the user gets a certificate from a course that belongs to
+        a program. This version just propagates just the passing grade.
+
+        Expected behavior:
+            - Action propagates the passing grade to the program course.
+        """
+        mock_course = MagicMock()
+        mock_course.other_course_settings.get.return_value = self.grading_config
+        get_course.return_value = mock_course
+        load_xblock.return_value.weight = 1
+
+        trigger_grades_assignment(**self.kwargs)
+
+        load_xblock.return_value.runtime.publish.assert_called_once_with(
+            load_xblock.return_value,
+            "grade",
+            {
+                "value": 1,
+                "max_value": 1,
+            }
+        )
+
+    @load_xblock
+    @get_course
+    def test_trigger_exact_grade(self, get_course, load_xblock):
+        """
+        Tests action when the user gets a certificate from a course that belongs to
+        a program. This version propagates the exact grade obtained in the course.
+
+        Expected behavior:
+            - Action propagates the passing grade to the program course.
+        """
+        mock_course = MagicMock()
+        self.grading_config["exact_score"] = True
+        mock_course.other_course_settings.get.return_value = self.grading_config
+        get_course.return_value = mock_course
+        load_xblock.return_value.weight = 1
+
+        trigger_grades_assignment(**self.kwargs)
+
+        load_xblock.return_value.runtime.publish.assert_called_once_with(
+            load_xblock.return_value,
+            "grade",
+            {
+                "value": 0.5,
+                "max_value": 1,
+            }
         )

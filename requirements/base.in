@@ -3,5 +3,6 @@
 
 Django
 djangorestframework
+django-crum
 edx-opaque-keys[django]
 celery
