@@ -11,6 +11,7 @@ Change Log
 .. There should always be an "Unreleased" section for changes pending release.
 Unreleased
 ----------
+* **BREAKING CHANGE**: add support for lilac and therefore changed backends defaults.
 
 [1.0.0] - 2021-08-17
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
