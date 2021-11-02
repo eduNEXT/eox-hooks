@@ -6,7 +6,10 @@ import json
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from eox_hooks.edxapp_wrapper.backends.models import get_openedx_certificate_model, get_openedx_user_profile_model
+from eox_hooks.edxapp_wrapper.models import get_certificate_model, get_user_profile_model
+
+Certificate = get_certificate_model()
+UserProfile = get_user_profile_model()
 
 
 class CertificateSerializer(serializers.ModelSerializer):
@@ -17,7 +20,7 @@ class CertificateSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Meta class."""
-        model = get_openedx_certificate_model()
+        model = Certificate
         fields = '__all__'
 
 
@@ -30,7 +33,7 @@ class RetirementUserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Meta class."""
-        model = get_openedx_user_profile_model()
+        model = UserProfile
         fields = '__all__'
 
     def get_meta(self, obj):
