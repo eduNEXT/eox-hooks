@@ -8,7 +8,7 @@ from rest_framework import serializers
 
 from eox_hooks.edxapp_wrapper.models import get_certificate_model, get_user_profile_model
 
-Certificate = get_certificate_model()
+GeneratedCertificate = get_certificate_model()
 UserProfile = get_user_profile_model()
 
 
@@ -20,7 +20,7 @@ class CertificateSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Meta class."""
-        model = Certificate
+        model = GeneratedCertificate
         fields = '__all__'
 
 

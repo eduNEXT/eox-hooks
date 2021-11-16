@@ -4,11 +4,12 @@ Classes:
     TestPostToWebhookUrl.
     TriggerEnrollmentsTest.
 """
+import datetime
 from unittest.mock import MagicMock, patch
 
-from django.contrib.auth import get_user_model
 from django.test import TestCase
 from opaque_keys.edx.keys import CourseKey
+from openedx_events.learning.data import CertificateData, CourseData, CourseEnrollmentData, UserData, UserPersonalData
 
 from eox_hooks.actions import get_request_fields, trigger_enrollments_creation, trigger_grades_assignment
 
@@ -18,11 +19,14 @@ class TestPostToWebhookUrl(TestCase):
 
     def setUp(self):
         """Set up class for post_to_webhook_url testing."""
-        self.user = get_user_model().objects.create(
-            id='1',
-            first_name='Tania',
-            last_name='Chernova',
-            username='taniacher',
+        self.user = UserData(
+            pii=UserPersonalData(
+                username="taniacher",
+                email="test@example.com",
+                name="Tania Chernova",
+            ),
+            id=1,
+            is_active=True,
         )
         self.kwargs = {
             'user': self.user,
@@ -35,13 +39,11 @@ class TestPostToWebhookUrl(TestCase):
         This should return a dictionary with all the fields found.
         """
         fields = {
-            "first_name": "user.first_name",
-            "last_name": "user.last_name",
-            "username": "user.username",
+            "name": "user.pii.name",
+            "username": "user.pii.username",
         }
         expected_data = {
-            "first_name": "Tania",
-            "last_name": "Chernova",
+            "name": "Tania Chernova",
             "username": "taniacher",
         }
 
@@ -60,7 +62,7 @@ class TestPostToWebhookUrl(TestCase):
         fields = {
             "favorite_color": "user.favorite_color",
             "favorite_food": "user.favorite_food",
-            "username": "user.username",
+            "username": "user.pii.username",
             "course": "course.id",
         }
         extra_fields = {
@@ -91,9 +93,26 @@ class TriggerEnrollmentsTest(TestCase):
         """
         Setup common conditions for test cases.
         """
-        self.user = MagicMock(username="test")
+        enrollment = CourseEnrollmentData(
+            user=UserData(
+                pii=UserPersonalData(
+                    username="test",
+                    email="test@example.com",
+                    name="Test Example",
+                ),
+                id=39,
+                is_active=True,
+            ),
+            course=CourseData(
+                course_key=CourseKey.from_string("course-v1:edX+DemoX+Demo_Course"),
+                display_name="Demonstration Course",
+            ),
+            mode="audit",
+            is_active=True,
+            creation_date=datetime.datetime.now(),
+        )
         self.kwargs = {
-            "user": self.user,
+            "enrollment": enrollment,
         }
 
     @create_enrollments_for_program
@@ -177,8 +196,26 @@ class TriggerGradingTest(TestCase):
         """
         Setup common conditions for test cases.
         """
-        user = MagicMock(id=1, username="test")
-        self.certificate = MagicMock(user=user, grade=0.5)
+        self.certificate = CertificateData(
+            user=UserData(
+                pii=UserPersonalData(
+                    username="test",
+                    email="test@example.com",
+                    name="Test Example",
+                ),
+                id=39,
+                is_active=True,
+            ),
+            course=CourseData(
+                course_key=CourseKey.from_string("course-v1:edX+DemoX+Demo_Course"),
+                display_name="Demonstration Course",
+            ),
+            mode="audit",
+            current_status="notpassing",
+            grade=0.5,
+            download_url="https://downdloadurl.com",
+            name="Certs",
+        )
         self.kwargs = {
             "certificate": self.certificate,
         }

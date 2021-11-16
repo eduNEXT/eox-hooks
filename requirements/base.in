@@ -6,3 +6,4 @@ djangorestframework
 django-crum
 edx-opaque-keys[django]
 celery
+openedx-events

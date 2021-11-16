@@ -67,23 +67,48 @@ class EoxHooksConfig(AppConfig):
                 'receivers': [
                     {
                         'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module('pre_enrollment'),
-                        'dispatch_uid': 'eox-hooks:pre_enrollment',
-                    },
-                    {
-                        'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module('post_certificate_creation'),
-                        'dispatch_uid': 'eox-hooks:post_certificate_creation',
-                    },
-                    {
-                        'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module('post_register'),
+                        'signal_path': 'openedx_events.learning.signals.STUDENT_REGISTRATION_COMPLETED',
                         'dispatch_uid': 'eox-hooks:post_register',
                     },
                     {
                         'receiver_func_name': 'hooks_handler',
-                        'signal_path': get_signal_module('post_enrollment'),
+                        'signal_path': 'openedx_events.learning.signals.SESSION_LOGIN_COMPLETED',
+                        'dispatch_uid': 'eox-hooks:post_session_login',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.COURSE_ENROLLMENT_CREATED',
                         'dispatch_uid': 'eox-hooks:post_enrollment',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.COURSE_ENROLLMENT_CHANGED',
+                        'dispatch_uid': 'eox-hooks:post_enrollment_change',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.COURSE_UNENROLLMENT_COMPLETED',
+                        'dispatch_uid': 'eox-hooks:post_unenrollment',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.CERTIFICATE_CREATED',
+                        'dispatch_uid': 'eox-hooks:post_certificate_creation',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.CERTIFICATE_CHANGED',
+                        'dispatch_uid': 'eox-hooks:post_certificate_change',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.CERTIFICATE_REVOKED',
+                        'dispatch_uid': 'eox-hooks:post_certificate_revoke',
+                    },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        'signal_path': 'openedx_events.learning.signals.COHORT_MEMBERSHIP_CHANGED',
+                        'dispatch_uid': 'eox-hooks:post_cohort_change',
                     },
                 ],
             }
