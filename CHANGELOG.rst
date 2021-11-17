@@ -11,6 +11,9 @@ Change Log
 .. There should always be an "Unreleased" section for changes pending release.
 Unreleased
 ----------
+
+[2.0.0] - 2021-11-17
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * **BREAKING CHANGE**: add support for lilac and therefore changed backends defaults.
 * **BREAKING CHANGE**: add support for openedx-events. Only works for Lilac with PRs backport 28266 and 18640
   and >= Maple.
