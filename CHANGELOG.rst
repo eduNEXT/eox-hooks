@@ -12,6 +12,11 @@ Change Log
 Unreleased
 ----------
 
+[2.0.1] - 2022-06-28
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Add more descriptive message when action fails.
+
 [2.0.0] - 2021-11-17
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * **BREAKING CHANGE**: add support for lilac and therefore changed backends defaults.

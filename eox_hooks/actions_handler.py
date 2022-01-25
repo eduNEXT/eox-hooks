@@ -21,12 +21,12 @@ def action_handler(trigger_event, configuration, **kwargs):
     try:
         kwargs["trigger_event"] = trigger_event
         action_result = action(**kwargs)
-        log.info("The action {} triggered by {} ended successfully.".format(action, trigger_event))
-    except Exception as exception:  # pylint: disable=broad-except
-        log.error("The action {} triggered by {} failed.".format(action, trigger_event))
+        log.info("The action %s triggered by %s ended successfully.", action, trigger_event)
+    except Exception:  # pylint: disable=broad-except
+        log.exception("The action %s triggered by %s failed", action, trigger_event)
 
         if not configuration.get("fail_silently"):
-            raise exception
+            raise
 
     return action_result
 
