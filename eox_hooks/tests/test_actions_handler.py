@@ -38,8 +38,7 @@ class TestActionHandler(TestCase):
         action_mock = Mock()
         action_lookup_mock.return_value = action_mock
         action_mock.side_effect = Exception()
-        log_message = "The action {} triggered by {} failed.".format(action_mock,
-                                                                     self.trigger_event)
+        log_message = "The action {} triggered by {} failed".format(action_mock, self.trigger_event)
 
         with LogCapture() as log:
             action_handler(self.trigger_event, self.configuration)
