@@ -1,4 +1,4 @@
-"""This module defines the handlers for the actions triggered by a signal received by eox-hooks."""
+"""This module defines theD handlers for the actions triggered by a signal received by eox-hooks."""
 import logging
 from importlib import import_module
 
