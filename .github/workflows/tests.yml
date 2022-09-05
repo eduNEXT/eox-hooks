@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Cache dependency
         uses: actions/cache@v2
         with:
@@ -27,6 +28,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Install Dev Requirements
+        run: |
+          make install-dev-dependencies
       - name: Run Python Tests
         run: |
             export TOXENV=${TOX_ENV//./}
