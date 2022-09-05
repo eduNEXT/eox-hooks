@@ -26,6 +26,9 @@ clean: ## delete most git-ignored files
 requirements: ## install environment requirements
 	pip install -r requirements/base.txt
 
+install-dev-dependencies: ## install tox
+	pip install -r requirements/tox.txt
+
 upgrade: export CUSTOM_COMPILE_COMMAND=make upgrade
 upgrade: ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
 	pip install -qr requirements/pip-tools.txt
