@@ -9,6 +9,7 @@ from unittest.mock import MagicMock, patch
 
 from django.test import TestCase
 from opaque_keys.edx.keys import CourseKey
+# pylint: disable=line-too-long
 from openedx_events.learning.data import CertificateData, CourseData, CourseEnrollmentData, UserData, UserPersonalData
 
 from eox_hooks.actions import get_request_fields, trigger_enrollments_creation, trigger_grades_assignment

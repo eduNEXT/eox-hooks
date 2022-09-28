@@ -38,10 +38,14 @@ upgrade: ## update the requirements/*.txt files with the latest packages satisfy
 	$(PIP_COMPILE) -o requirements/test.txt requirements/test.in
 	$(PIP_COMPILE) -o requirements/tox.txt requirements/tox.in
 
+	grep -e "^django==" requirements/test.txt > requirements/django.txt
+	sed '/^[dD]jango==/d;' requirements/test.txt > requirements/test.tmp
+	mv requirements/test.tmp requirements/test.txt
+
 quality: clean ## check coding style with pycodestyle and pylint
 	$(TOX) pycodestyle ./eox_hooks
-	$(TOX) pylint ./eox_hooks --rcfile=./setup.cfg
-	$(TOX) isort --check-only --recursive --diff ./eox_hooks
+	$(TOX) pylint -d duplicate-code ./eox_hooks --rcfile=./setup.cfg
+	$(TOX) isort --check-only --diff ./eox_hooks
 
 test-python: clean ## Run test suite. Remove omitted files when tests are added.
 	$(TOX) pip install -r requirements/test.txt --exists-action w

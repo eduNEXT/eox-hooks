@@ -10,7 +10,6 @@
 
 
 # Keep same platform version
-celery==4.4.7
-djangorestframework==3.12.4
-edx-opaque-keys[django]==2.2.0
-testfixtures==6.17.1
+celery>=5.2.2,<6.0.0
+djangorestframework<3.13.0
+Django<3.3

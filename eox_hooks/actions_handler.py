@@ -33,8 +33,8 @@ def action_handler(trigger_event, configuration, **kwargs):
 
 def action_lookup(module_name, action):
     """
-    Function that returns a function defined in path, if the path is not find then a default action is
-    returned.
+    Function that returns a function defined in path,
+    if the path is not find then a default action is returned.
     The path must look like: eox_hooks.actions.default_logging
     Where eox_hooks.actions is module_name and action_name is default_logging
     """
@@ -42,14 +42,9 @@ def action_lookup(module_name, action):
         module = import_module(module_name)
         return getattr(module, action)
     except ImportError:
-        message = "The module {} with the action {} does not exist.".format(
-            module_name,
-            action,
-        )
+        message = f"The module {module_name} with the action {action} does not exist."
     except AttributeError:
-        message = "The action {} does not exist in the module {}.".format(
-            action,
-            module.__name__,
-        )
+        message = f"The action {action} does not exist in the module {module.__name__}."
 
     log.error(message)
+    return None

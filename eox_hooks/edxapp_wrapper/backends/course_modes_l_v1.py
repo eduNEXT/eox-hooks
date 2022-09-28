@@ -11,7 +11,7 @@ def get_all_course_modes():
         [list]: list of course modes.
     """
     try:
-        from common.djangoapps.course_modes.models import CourseMode  # pylint: disable=import-outside-toplevel
+        from common.djangoapps.course_modes.models import CourseMode  # pylint: disable=C0415
         modes_for_course = CourseMode.ALL_MODES
     except ImportError:
         modes_for_course = [

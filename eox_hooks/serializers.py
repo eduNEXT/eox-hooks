@@ -18,7 +18,7 @@ class CertificateSerializer(serializers.ModelSerializer):
     """
     created_date = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
 
-    class Meta:
+    class Meta:  # pylint: disable=R0903
         """Meta class."""
         model = GeneratedCertificate
         fields = '__all__'
@@ -31,7 +31,7 @@ class RetirementUserProfileSerializer(serializers.ModelSerializer):
     country = serializers.CharField(read_only=True)
     meta = serializers.SerializerMethodField(read_only=True)
 
-    class Meta:
+    class Meta:  # pylint: disable=R0903
         """Meta class."""
         model = UserProfile
         fields = '__all__'
@@ -51,7 +51,7 @@ class UserSerializer(serializers.ModelSerializer):
     """
     profile = RetirementUserProfileSerializer(read_only=True)
 
-    class Meta:
+    class Meta:  # pylint: disable=R0903
         """Meta class."""
         model = get_user_model()
         exclude = ['password']

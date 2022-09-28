@@ -3,7 +3,7 @@ Test Django settings for eox_hooks project.
 """
 
 
-from .common import *  # pylint: disable=wildcard-import
+from .common import *  # pylint: disable=wildcard-import, unused-wildcard-import
 
 ALLOWED_HOSTS = ['*']
 

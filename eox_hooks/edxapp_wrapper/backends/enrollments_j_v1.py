@@ -11,7 +11,7 @@ def get_course_enrollment():
         [Class]: Course Enrollment edxapp model.
     """
     try:
-        from student.models import CourseEnrollment  # pylint: disable=import-outside-toplevel
+        from student.models import CourseEnrollment  # pylint: disable=C0415
     except ImportError:
         CourseEnrollment = object
     return CourseEnrollment
