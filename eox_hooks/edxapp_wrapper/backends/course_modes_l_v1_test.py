@@ -10,6 +10,13 @@ def get_all_course_modes():
     Returns:
         [list]: list of course modes.
     """
-    from course_modes.models import CourseMode  # pylint: disable=C0415, E0401
-    modes_for_course = CourseMode.ALL_MODES
+    modes_for_course = [
+            "honor",
+            "professional",
+            "verified",
+            "audit",
+            "no-id-professional",
+            "credit",
+            "masters",
+        ]
     return modes_for_course
