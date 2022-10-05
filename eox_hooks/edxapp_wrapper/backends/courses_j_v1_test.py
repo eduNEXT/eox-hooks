@@ -2,6 +2,8 @@
 Backend file for Course related objects.
 """
 
+from mock import Mock
+
 
 def get_load_single_xblock():
     """
@@ -10,7 +12,7 @@ def get_load_single_xblock():
     Returns:
         [Function]: load_single_xblock function.
     """
-    return object
+    return Mock()
 
 
 def get_item_not_found_exception():

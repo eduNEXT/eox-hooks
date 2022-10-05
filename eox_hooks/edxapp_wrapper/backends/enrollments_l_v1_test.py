@@ -2,6 +2,8 @@
 Backend file for Course Enrollment related objects.
 """
 
+from mock import Mock
+
 
 def get_course_enrollment():
     """
