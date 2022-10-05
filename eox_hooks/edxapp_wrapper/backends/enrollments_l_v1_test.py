@@ -10,4 +10,4 @@ def get_course_enrollment():
     Returns:
         [Class]: Course Enrollment edxapp model.
     """
-    return object
+    return Mock()
