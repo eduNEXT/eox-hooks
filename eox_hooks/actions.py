@@ -11,7 +11,7 @@ from eox_hooks.edxapp_wrapper.courses import get_item_not_found_exception, get_l
 from eox_hooks.edxapp_wrapper.models import get_certificate_model
 from eox_hooks.serializers import CertificateSerializer, CourseSerializer, UserSerializer
 from eox_hooks.tasks import create_enrollments_for_program
-from eox_hooks.utils import _get_course, flatten_dict, get_trigger_settings
+from eox_hooks.utils import FakeRequest, _get_course, flatten_dict, get_trigger_settings
 
 COURSE_PASSING_GRADE = 1
 ItemNotFoundError = get_item_not_found_exception()
@@ -218,7 +218,7 @@ def trigger_grades_assignment(**kwargs):
     else:
         grade = COURSE_PASSING_GRADE
 
-    django_request = get_current_request()
+    django_request = FakeRequest() if not get_current_request() else get_current_request()
 
     try:
         xblock_instance = load_single_xblock(
@@ -233,5 +233,8 @@ def trigger_grades_assignment(**kwargs):
         return
 
     xblock_instance.runtime.publish(
-        xblock_instance, "grade", {"value": grade, "max_value": xblock_instance.weight}
+        xblock_instance, "grade", {
+            "value": float(grade),
+            "max_value": float(xblock_instance.weight)
+        }
     )
