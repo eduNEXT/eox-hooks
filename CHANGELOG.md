@@ -1,8 +1,21 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v3.0.0 - 2022-10-06
+
+### [3.0.0](https://github.com/eduNEXT/eox-hooks/compare/v2.0.1...v3.0.0) (2022-10-06)
+
+#### ⚠ BREAKING CHANGES
+
+- Drop python 3.5 support in favor of python 3.8.
+
+#### Features
+
+- add support to nutmeg ([385e8c2](https://github.com/eduNEXT/eox-hooks/commit/385e8c2ca987185d42f4a079be7e043e4fdb238b))
 
 ## [2.0.1] - 2022-06-28
 
@@ -16,11 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **BREAKING CHANGE**: add support for lilac and therefore changed backends defaults.
 - **BREAKING CHANGE**: add support for openedx-events. Only works for Lilac with PRs backport 28266 and 18640
-  and >= Maple.
+- and >= Maple.
 
 ## [1.0.0] - 2021-08-17
 
 ### Added
+
 - Drop support for python 2.7.
 - Add backends for course, enrollment and course modes.
 - Add custom action and task used to enroll users into program courses.
@@ -44,7 +58,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release on PyPI.
 
-
 ## [0.2.1] - 2020-10-29
 
 ### Added
@@ -58,4 +71,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added trigger/action handlers for defined hooks.
 
 ## [0.1.0] - 2020-07-08
-
