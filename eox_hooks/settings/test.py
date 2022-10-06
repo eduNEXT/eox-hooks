@@ -3,7 +3,7 @@ Test Django settings for eox_hooks project.
 """
 
 
-from .common import *  # pylint: disable=wildcard-import
+from .common import *  # pylint: disable=wildcard-import, unused-wildcard-import
 
 ALLOWED_HOSTS = ['*']
 
@@ -27,13 +27,13 @@ USE_EOX_HOOKS = True
 
 EOX_HOOKS_TEST_ENVIRONMENT = True
 
-EOX_HOOKS_ENROLLMENTS_BACKEND = "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
+EOX_HOOKS_ENROLLMENTS_BACKEND = "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1_test"
 
-EOX_HOOKS_COURSES_BACKEND = "eox_hooks.edxapp_wrapper.backends.courses_j_v1"
+EOX_HOOKS_COURSES_BACKEND = "eox_hooks.edxapp_wrapper.backends.courses_j_v1_test"
 
-EOX_HOOKS_COURSE_MODES_BACKEND = "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
+EOX_HOOKS_COURSE_MODES_BACKEND = "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1_test"
 
-EOX_HOOKS_MODELS_BACKEND = "eox_hooks.edxapp_wrapper.backends.models_l_v1"
+EOX_HOOKS_MODELS_BACKEND = "eox_hooks.edxapp_wrapper.backends.models_l_v1_test"
 
 # This key needs to be defined so that the check_apps_ready passes and the
 # AppRegistry is loaded

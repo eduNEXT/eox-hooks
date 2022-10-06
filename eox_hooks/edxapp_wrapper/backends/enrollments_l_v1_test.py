@@ -2,6 +2,8 @@
 Backend file for Course Enrollment related objects.
 """
 
+from mock import Mock
+
 
 def get_course_enrollment():
     """
@@ -10,5 +12,4 @@ def get_course_enrollment():
     Returns:
         [Class]: Course Enrollment edxapp model.
     """
-    from student.models import CourseEnrollment  # pylint: disable=C0415, E0401
-    return CourseEnrollment
+    return Mock()

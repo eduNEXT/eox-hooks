@@ -10,15 +10,19 @@ edx-platform through Django configurations and Open edX Events.
 Compatibility Notes
 --------------------
 
-+-------------------+----------+
-| Open edX Release  |  Version |
-+===================+==========+
-|       Juniper     |   <= 1.0 |
-+-------------------+----------+
-|        Koa        |    > 1.0 |
-+-------------------+----------+
-|       Lilac       |    > 1.0 |
-+-------------------+----------+
++-------------------+----------------+
+| Open edX Release  |  Version       |
++===================+================+
+|       Juniper     |   <= 1.0       |
++-------------------+----------------+
+|        Koa        |    > 1.0       |
++-------------------+----------------+
+|       Lilac       |    > 1.0 < 2.0 |
++-------------------+----------------+
+|       Maple       |   >= 2.0 < 3.0 |
++-------------------+----------------+
+|       Nutmeg      |   >= 3.0       |
++-------------------+----------------+
 
 The following changes to the plugin settings are necessary. If the release you are looking for is
 not listed, then the accumulation of changes from previous releases is enough.
@@ -43,6 +47,24 @@ not listed, then the accumulation of changes from previous releases is enough.
    EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
 
 **Lilac**
+
+.. code-block:: yaml
+
+   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
+   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
+   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
+   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
+
+**Maple**
+
+.. code-block:: yaml
+
+   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
+   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
+   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
+   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
+
+**Nutmeg**
 
 .. code-block:: yaml
 

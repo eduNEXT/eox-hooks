@@ -38,7 +38,7 @@ class TestActionHandler(TestCase):
         action_mock = Mock()
         action_lookup_mock.return_value = action_mock
         action_mock.side_effect = Exception()
-        log_message = "The action {} triggered by {} failed".format(action_mock, self.trigger_event)
+        log_message = f"The action {action_mock} triggered by {self.trigger_event} failed"
 
         with LogCapture() as log:
             action_handler(self.trigger_event, self.configuration)
@@ -79,10 +79,7 @@ class TestActionLookup(TestCase):
     def test_with_non_existent_action(self):
         """Used to test what happends if a non-existent action is passed."""
         module_name, action = "eox_hooks.tests.test_utils", "non_existent_action"
-        log_message = "The action {} does not exist in the module {}.".format(
-            action,
-            module_name,
-        )
+        log_message = f"The action {action} does not exist in the module {module_name}."
 
         with LogCapture() as log:
             action = action_lookup(module_name, action)
@@ -93,10 +90,7 @@ class TestActionLookup(TestCase):
     def test_with_non_existent_module(self):
         """Used to test what happends if a non-existent module is passed."""
         module_name, action = "non_existent_module", "custom_action_mock"
-        log_message = "The module {} with the action {} does not exist.".format(
-            module_name,
-            action,
-        )
+        log_message = f"The module {module_name} with the action {action} does not exist."
 
         with LogCapture() as log:
             action = action_lookup(module_name, action)

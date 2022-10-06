@@ -10,11 +10,7 @@ def get_load_single_xblock():
     Returns:
         [Function]: load_single_xblock function.
     """
-    try:
-        # pylint: disable=import-outside-toplevel
-        from lms.djangoapps.courseware.module_render import load_single_xblock
-    except ImportError:
-        load_single_xblock = object
+    from lms.djangoapps.courseware.module_render import load_single_xblock  # pylint: disable=C0415, E0401
     return load_single_xblock
 
 
@@ -25,8 +21,5 @@ def get_item_not_found_exception():
     Returns:
         [Class]: ItemNotFoundError exception.
     """
-    try:
-        from xmodule.modulestore.exceptions import ItemNotFoundError  # pylint: disable=import-outside-toplevel
-    except ImportError:
-        ItemNotFoundError = Exception
+    from xmodule.modulestore.exceptions import ItemNotFoundError  # pylint: disable=C0415, E0401
     return ItemNotFoundError

@@ -10,17 +10,6 @@ def get_all_course_modes():
     Returns:
         [list]: list of course modes.
     """
-    try:
-        from common.djangoapps.course_modes.models import CourseMode  # pylint: disable=import-outside-toplevel
-        modes_for_course = CourseMode.ALL_MODES
-    except ImportError:
-        modes_for_course = [
-            "honor",
-            "professional",
-            "verified",
-            "audit",
-            "no-id-professional",
-            "credit",
-            "masters",
-        ]
+    from common.djangoapps.course_modes.models import CourseMode  # pylint: disable=C0415, E0401
+    modes_for_course = CourseMode.ALL_MODES
     return modes_for_course

@@ -69,7 +69,7 @@ def post_to_webhook_url(**kwargs):
         extended_data = get_extended_certificate_data(certificate)
         data.update(extended_data)
 
-    response = requests.post(webhook_url, flatten_dict(data))
+    response = requests.post(webhook_url, flatten_dict(data))  # pylint: disable=W3101
     log.info(
         "post_to_webhook_url request information: %s",
         response.text,

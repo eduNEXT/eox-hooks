@@ -10,8 +10,5 @@ def get_course_enrollment():
     Returns:
         [Class]: Course Enrollment edxapp model.
     """
-    try:
-        from common.djangoapps.student.models import CourseEnrollment  # pylint: disable=import-outside-toplevel
-    except ImportError:
-        CourseEnrollment = object
+    from common.djangoapps.student.models import CourseEnrollment  # pylint: disable=C0415, E0401
     return CourseEnrollment

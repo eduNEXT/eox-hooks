@@ -64,5 +64,5 @@ def create_enrollments_for_program(self, username, followup_enrollments):
 
             CourseEnrollment.enroll(user, course_key, mode)
 
-    except Exception as e:
-        raise self.retry(exc=e)
+    except Exception as error:
+        raise self.retry(exc=error)

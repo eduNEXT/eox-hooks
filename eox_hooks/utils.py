@@ -6,12 +6,12 @@ import collections
 from django.conf import settings
 
 
-def flatten_dict(d, parent_key='', sep='_'):
+def flatten_dict(dictionary, parent_key='', sep='_'):
     """
     This function returns a flatten dictionary-like object.
     """
     items = []
-    for key, value in d.items():
+    for key, value in dictionary.items():
         new_key = parent_key + sep + key if parent_key else key
         if isinstance(value, collections.MutableMapping):
             items.extend(flatten_dict(value, new_key, sep=sep).items())

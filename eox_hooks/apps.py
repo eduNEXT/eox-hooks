@@ -17,10 +17,7 @@ def get_signal_module(signal_name):
     a default signal module is returned.
     """
     try:
-        trigger_signal = "{signals_module}.{signal_name}".format(
-            signals_module=OPENEDX_HOOKS_TRIGGER_MODULE,
-            signal_name=signal_name,
-        )
+        trigger_signal = f"{OPENEDX_HOOKS_TRIGGER_MODULE}.{signal_name}"
         module = import_module(OPENEDX_HOOKS_TRIGGER_MODULE)
         getattr(module, signal_name)
     except (ImportError, AttributeError):
@@ -67,6 +64,7 @@ class EoxHooksConfig(AppConfig):
                 'receivers': [
                     {
                         'receiver_func_name': 'hooks_handler',
+                        # pylint: disable=C0301
                         'signal_path': 'openedx_events.learning.signals.STUDENT_REGISTRATION_COMPLETED',
                         'dispatch_uid': 'eox-hooks:post_register',
                     },
@@ -87,6 +85,7 @@ class EoxHooksConfig(AppConfig):
                     },
                     {
                         'receiver_func_name': 'hooks_handler',
+                        # pylint: disable=C0301
                         'signal_path': 'openedx_events.learning.signals.COURSE_UNENROLLMENT_COMPLETED',
                         'dispatch_uid': 'eox-hooks:post_unenrollment',
                     },

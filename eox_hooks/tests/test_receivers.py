@@ -133,7 +133,8 @@ class TestAuthEventsHandler(TestCase):
         }
         action_handler.return_value.__name__ = "receiver"
         action_handler.return_value.__module__ = "receiver_module"
-        STUDENT_REGISTRATION_COMPLETED.connect(hooks_handler, dispatch_uid="eox-hooks:post_register")
+        STUDENT_REGISTRATION_COMPLETED.connect(hooks_handler,
+                                               dispatch_uid="eox-hooks:post_register")
 
         STUDENT_REGISTRATION_COMPLETED.send_event(
             user=self.user,
@@ -256,7 +257,8 @@ class TestEnrollmentEventsHandler(TestCase):
         }
         action_handler.return_value.__name__ = "receiver"
         action_handler.return_value.__module__ = "receiver_module"
-        COURSE_ENROLLMENT_CHANGED.connect(hooks_handler, dispatch_uid="eox-hooks:post_enrollment_change")
+        COURSE_ENROLLMENT_CHANGED.connect(hooks_handler,
+                                          dispatch_uid="eox-hooks:post_enrollment_change")
 
         COURSE_ENROLLMENT_CHANGED.send_event(
             enrollment=self.enrollment,
@@ -287,7 +289,8 @@ class TestEnrollmentEventsHandler(TestCase):
         }
         action_handler.return_value.__name__ = "receiver"
         action_handler.return_value.__module__ = "receiver_module"
-        COURSE_UNENROLLMENT_COMPLETED.connect(hooks_handler, dispatch_uid="eox-hooks:post_unenrollment")
+        COURSE_UNENROLLMENT_COMPLETED.connect(hooks_handler,
+                                              dispatch_uid="eox-hooks:post_unenrollment")
 
         COURSE_UNENROLLMENT_COMPLETED.send_event(
             enrollment=self.enrollment,
@@ -350,7 +353,8 @@ class TestCertificateEventsHandler(TestCase):
         }
         action_handler.return_value.__name__ = "receiver"
         action_handler.return_value.__module__ = "receiver_module"
-        CERTIFICATE_CREATED.connect(hooks_handler, dispatch_uid="eox-hooks:post_certificate_creation")
+        CERTIFICATE_CREATED.connect(hooks_handler,
+                                    dispatch_uid="eox-hooks:post_certificate_creation")
 
         CERTIFICATE_CREATED.send_event(
             certificate=self.certificate,
@@ -471,7 +475,8 @@ class TestCohortEventsHandler(TestCase):
         }
         action_handler.return_value.__name__ = "receiver"
         action_handler.return_value.__module__ = "receiver_module"
-        COHORT_MEMBERSHIP_CHANGED.connect(hooks_handler, dispatch_uid="eox-hooks:post_cohort_change")
+        COHORT_MEMBERSHIP_CHANGED.connect(hooks_handler,
+                                          dispatch_uid="eox-hooks:post_cohort_change")
 
         COHORT_MEMBERSHIP_CHANGED.send_event(
             cohort=self.cohort,
