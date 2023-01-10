@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v3.0.1 - 2023-01-10
+
+### [3.0.1](https://github.com/eduNEXT/eox-hooks/compare/v3.0.0...v3.0.1) (2023-01-10)
+
+### Bug Fixes
+
+- adding a fake request to execute in async servers ([#35](https://github.com/eduNEXT/eox-hooks/issues/35)) ([0fbf12e](https://github.com/eduNEXT/eox-hooks/commit/0fbf12e6ee331eef764e3b802db38cd5c786380a))
+
+### Continuous Integration
+
+- adds mantainer group ([#37](https://github.com/eduNEXT/eox-hooks/issues/37)) ([b8c8596](https://github.com/eduNEXT/eox-hooks/commit/b8c859638ea2cb68803f2a7a715811a0abb7e40a))
+- update the changelog updater step in bumpversion ([#36](https://github.com/eduNEXT/eox-hooks/issues/36)) ([563dd82](https://github.com/eduNEXT/eox-hooks/commit/563dd825228495170ebdd90b0ce0f752bc1f2291))
+
 ## v3.0.0 - 2022-10-06
 
 ### [3.0.0](https://github.com/eduNEXT/eox-hooks/compare/v2.0.1...v3.0.0) (2022-10-06)
