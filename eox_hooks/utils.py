@@ -6,6 +6,28 @@ import collections
 from django.conf import settings
 
 
+class FakeRequest:
+    """
+    This class represents a fake request, this is needed when the action
+    "trigger_grades_assignment" is executed in an async server.
+    """
+    META = {}
+
+    @staticmethod
+    def is_secure():
+        """
+        Returns a True to mock-up https.
+        """
+        return True
+
+    @staticmethod
+    def get_host():
+        """
+        Returns a string with the site name to mock-up the host.
+        """
+        return settings.SITE_NAME
+
+
 def flatten_dict(dictionary, parent_key='', sep='_'):
     """
     This function returns a flatten dictionary-like object.
