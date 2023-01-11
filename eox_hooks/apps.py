@@ -109,6 +109,12 @@ class EoxHooksConfig(AppConfig):
                         'signal_path': 'openedx_events.learning.signals.COHORT_MEMBERSHIP_CHANGED',
                         'dispatch_uid': 'eox-hooks:post_cohort_change',
                     },
+                    {
+                        'receiver_func_name': 'hooks_handler',
+                        # pylint: disable=line-too-long
+                        'signal_path': 'openedx_events.learning.signals.PERSISTENT_GRADE_SUMMARY_CHANGED',
+                        'dispatch_uid': 'eox-hooks:persistent_grade_summary_changed',
+                    },
                 ],
             }
         },
