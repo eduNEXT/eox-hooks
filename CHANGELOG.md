@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.0.0 - 2023-01-30
+
+### [4.0.0](https://github.com/eduNEXT/eox-hooks/compare/v3.0.1...v4.0.0) (2023-01-30)
+
+#### ⚠ BREAKING CHANGES
+
+- **DS-367:** add compatibility with olive
+
+#### Features
+
+- **DS-367:** add compatibility with Open edX olive release ([#39](https://github.com/eduNEXT/eox-hooks/issues/39)) ([887bf2c](https://github.com/eduNEXT/eox-hooks/commit/887bf2c20dc66680f200cf1d385e2473240bd954))
+
 ## v3.0.1 - 2023-01-10
 
 ### [3.0.1](https://github.com/eduNEXT/eox-hooks/compare/v3.0.0...v3.0.1) (2023-01-10)
