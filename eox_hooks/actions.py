@@ -205,36 +205,41 @@ def trigger_grades_assignment(**kwargs):
         "EDNX_TRIGGER_GRADES_ASSIGNMENT", {}
     )
 
-    program_id = grades_assignment_settings.get("program_id")
-    block_id = grades_assignment_settings.get("block_id")
-    if not program_id or not block_id:
-        return
+    def propagate(settings):
+        program_id = settings.get("program_id")
+        block_id = settings.get("block_id")
+        if not program_id or not block_id:
+            return
 
-    course_program_key = CourseKey.from_string(program_id)
-    usage_key_block = course_program_key.make_usage_key("staffgradedxblock", block_id)
+        course_program_key = CourseKey.from_string(program_id)
+        usage_key_block = course_program_key.make_usage_key("staffgradedxblock", block_id)
 
-    if grades_assignment_settings.get("exact_score"):
-        grade = certificate.grade
+        if settings.get("exact_score"):
+            grade = certificate.grade
+        else:
+            grade = COURSE_PASSING_GRADE
+
+        django_request = FakeRequest() if not get_current_request() else get_current_request()
+
+        try:
+            xblock_instance = load_single_xblock(
+                django_request, certificate.user.id, program_id, str(usage_key_block)
+            )
+        except ItemNotFoundError:
+            log.error(
+                "Couldn't propagate score from course "
+                "%s to Block %s because the latter was not found.",
+                program_id,
+                usage_key_block,
+            )
+            return
+        xblock_instance.runtime.publish(
+            xblock_instance,
+            "grade",
+            {"value": float(grade), "max_value": float(xblock_instance.weight)}
+            )
+    if isinstance(grades_assignment_settings, dict):
+        propagate(grades_assignment_settings)
     else:
-        grade = COURSE_PASSING_GRADE
-
-    django_request = FakeRequest() if not get_current_request() else get_current_request()
-
-    try:
-        xblock_instance = load_single_xblock(
-            django_request, certificate.user.id, program_id, str(usage_key_block)
-        )
-    except ItemNotFoundError:
-        log.error(
-            "Couldn't propagate score from course %s to Block %s because the latter was not found.",
-            program_id,
-            usage_key_block,
-        )
-        return
-
-    xblock_instance.runtime.publish(
-        xblock_instance, "grade", {
-            "value": float(grade),
-            "max_value": float(xblock_instance.weight)
-        }
-    )
+        for grade_dict in grades_assignment_settings:
+            propagate(grade_dict)
