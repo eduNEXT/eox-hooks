@@ -233,12 +233,12 @@ class TriggerGradingTest(TestCase):
         # -------- programs ---------
         self.grading_config_programs = [
             {
-            "block_id": "467f8ab131634e52bb6c22b60940d857",
-            "program_id": "course-v1:edx+DemoX+Demo_Course",
+                "block_id": "467f8ab131634e52bb6c22b60940d857",
+                "program_id": "course-v1:edx+DemoX+Demo_Course"
             },
             {
-            "block_id": "467f8ab131634e52bb6c22b60940d856",
-            "program_id": "course-v1:edx2+DemoX+Demo_Course",
+                "block_id": "467f8ab131634e52bb6c22b60940d856",
+                "program_id": "course-v1:edx2+DemoX+Demo_Course"
             }
         ]
 
@@ -347,7 +347,6 @@ class TriggerGradingTest(TestCase):
         """
         for grading_config in self.grading_config_programs:
             mock_course = MagicMock()
-            
             grading_config["exact_score"] = True
             mock_course.other_course_settings.get.return_value = grading_config
             get_course.return_value = mock_course
