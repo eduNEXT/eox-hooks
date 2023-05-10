@@ -230,6 +230,18 @@ class TriggerGradingTest(TestCase):
             self.grading_config.get("block_id")
         )
 
+        # -------- programs ---------
+        self.grading_config_programs = [
+            {
+                "block_id": "467f8ab131634e52bb6c22b60940d857",
+                "program_id": "course-v1:edx+DemoX+Demo_Course"
+            },
+            {
+                "block_id": "467f8ab131634e52bb6c22b60940d856",
+                "program_id": "course-v1:edx2+DemoX+Demo_Course"
+            }
+        ]
+
     @load_xblock
     @get_course
     def test_course_without_settings(self, get_course, load_xblock):
@@ -322,3 +334,31 @@ class TriggerGradingTest(TestCase):
                 "max_value": 1,
             }
         )
+
+    @load_xblock
+    @get_course
+    def test_trigger_exact_grade_2_programs(self, get_course, load_xblock):
+        """
+        Tests action when the user gets a certificate from a course that belongs to
+        a program. This version propagates the exact grade obtained in the course.
+
+        Expected behavior:
+            - Action propagates the passing grade to the program(s) course(s).
+        """
+        for grading_config in self.grading_config_programs:
+            mock_course = MagicMock()
+            grading_config["exact_score"] = True
+            mock_course.other_course_settings.get.return_value = grading_config
+            get_course.return_value = mock_course
+            load_xblock.return_value.weight = 1
+
+            trigger_grades_assignment(**self.kwargs)
+
+            load_xblock.return_value.runtime.publish(
+                load_xblock.return_value,
+                "grade",
+                {
+                    "value": 0.5,
+                    "max_value": 1,
+                }
+            )
