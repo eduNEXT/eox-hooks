@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.1.0 - 2023-05-10
+
+### [4.1.0](https://github.com/eduNEXT/eox-hooks/compare/v4.0.0...v4.1.0) (2023-05-10)
+
+#### Features
+
+- allow a child course to belong to multiples parents ([#41](https://github.com/eduNEXT/eox-hooks/issues/41)) ([1bb9700](https://github.com/eduNEXT/eox-hooks/commit/1bb9700cf4bd19e59b2ae0714f567855bfacddad))
+
+#### Continuous Integration
+
+- Update issue templates ([6293c3c](https://github.com/eduNEXT/eox-hooks/commit/6293c3cd03fc79fbeadcc6eaf2d9b05c99cd1931))
+
 ## v4.0.0 - 2023-01-30
 
 ### [4.0.0](https://github.com/eduNEXT/eox-hooks/compare/v3.0.1...v4.0.0) (2023-01-30)
