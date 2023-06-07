@@ -158,9 +158,14 @@ def trigger_enrollments_creation(**kwargs):
 
     if not followup_enrollments:
         return
+    
+    followup_list =[]
+    for enroll in followup_enrollments:
+        if str(enrollment.course.course_key) != enroll['course_id']:
+            followup_list.append(enroll)
 
     create_enrollments_for_program.delay(
-        enrollment.user.pii.username, followup_enrollments,
+        enrollment.user.pii.username, followup_list,
     )
 
 
