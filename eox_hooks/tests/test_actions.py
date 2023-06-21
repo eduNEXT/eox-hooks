@@ -166,7 +166,7 @@ class TriggerEnrollmentsTest(TestCase):
         other_course_settings = {
             "EDNX_TRIGGER_FOLLOWUP_ENROLLMENTS": [
                 {
-                    "course_id": "course-v1:edX+DemoX+Demo_Course",
+                    "course_id": "course-v1:edX+Demo123+Demo_Course",
                 },
             ],
         }
@@ -179,7 +179,7 @@ class TriggerEnrollmentsTest(TestCase):
             "test",
             [
                 {
-                    "course_id": "course-v1:edX+DemoX+Demo_Course",
+                    "course_id": "course-v1:edX+Demo123+Demo_Course",
                 },
             ],
         )
