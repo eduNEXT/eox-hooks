@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.1.1 - 2023-06-21
+
+### [4.1.1](https://github.com/eduNEXT/eox-hooks/compare/v4.1.0...v4.1.1) (2023-06-21)
+
+### Bug Fixes
+
+- valitade enrollment for programs ([#42](https://github.com/eduNEXT/eox-hooks/issues/42)) ([c4711a9](https://github.com/eduNEXT/eox-hooks/commit/c4711a909cc35a83cfede41c4dd466b9eb2c9dd9))
+
 ## v4.1.0 - 2023-05-10
 
 ### [4.1.0](https://github.com/eduNEXT/eox-hooks/compare/v4.0.0...v4.1.0) (2023-05-10)
