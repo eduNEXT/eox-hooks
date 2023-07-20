@@ -50,14 +50,11 @@ def create_enrollments_for_program(self, username, followup_enrollments):
 
             mode = enrollment.get("mode", "audit")
             mode_not_valid = mode.lower() not in MODES_FOR_COURSE
-            course_org_not_valid = course_key.org not in getattr(
-                settings, "course_org_filter", []
-            )
 
-            if mode_not_valid or course_org_not_valid:
+            if mode_not_valid:
                 log.error(
                     "Couldn't create enrollment for %s because the configuration is not valid: "
-                    "invalid organization or course mode.",
+                    "invalid course mode.",
                     course_key_str,
                 )
                 continue
