@@ -40,6 +40,6 @@ def plugin_settings(settings):
     https://github.com/edx/edx-platform/blob/master/openedx/core/djangoapps/plugins/README.rst
     """
     settings.EOX_HOOKS_ENROLLMENTS_BACKEND = "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-    settings.EOX_HOOKS_COURSES_BACKEND = "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
+    settings.EOX_HOOKS_COURSES_BACKEND = "eox_hooks.edxapp_wrapper.backends.courses_p_v1"
     settings.EOX_HOOKS_COURSE_MODES_BACKEND = "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
     settings.EOX_HOOKS_MODELS_BACKEND = "eox_hooks.edxapp_wrapper.backends.models_l_v1"
