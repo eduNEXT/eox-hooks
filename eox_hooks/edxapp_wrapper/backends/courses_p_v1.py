@@ -10,7 +10,7 @@ def get_load_single_xblock():
     Returns:
         [Function]: load_single_xblock function.
     """
-    from lms.djangoapps.courseware.module_render import load_single_xblock  # pylint: disable=C0415, E0401
+    from lms.djangoapps.courseware.block_render import load_single_xblock  # pylint: disable=C0415, E0401
     return load_single_xblock
 
 
