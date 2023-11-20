@@ -84,6 +84,15 @@ not listed, then the accumulation of changes from previous releases is enough.
    EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
    EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
 
+**Palm**
+
+.. code-block:: yaml
+
+   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
+   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_p_v1"
+   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
+   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
+
 
 These settings can be changed in ``eox_hooks/settings/common.py`` or, for example, in ansible configurations.
 
