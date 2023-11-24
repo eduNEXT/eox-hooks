@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v5.1.0 - 2023-11-24
+
+### [5.1.0](https://github.com/eduNEXT/eox-hooks/compare/v5.0.0...v5.1.0) (2023-11-24)
+
+#### Features
+
+- add Lilac backend ([#46](https://github.com/eduNEXT/eox-hooks/issues/46)) ([c196b2d](https://github.com/eduNEXT/eox-hooks/commit/c196b2df99f43eff0df1bdc2a752e81d45dcb8e0))
+
 ## v5.0.0 - 2023-11-20
 
 ### [5.0.0](https://github.com/eduNEXT/eox-hooks/compare/v4.1.1...v5.0.0) (2023-11-20)
