@@ -13,6 +13,7 @@ attrs==23.2.0
 backports-zoneinfo[tzdata]==0.2.1
     # via
     #   celery
+    #   django
     #   kombu
 billiard==4.2.0
     # via celery
@@ -32,7 +33,7 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.3.0
     # via celery
-django==3.2.23
+django==4.2.10
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
@@ -41,7 +42,7 @@ django==3.2.23
     #   openedx-events
 django-crum==0.7.9
     # via -r requirements/base.in
-djangorestframework==3.12.4
+djangorestframework==3.14.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
@@ -53,7 +54,7 @@ fastavro==1.9.3
     # via openedx-events
 kombu==5.3.5
     # via celery
-openedx-events==4.1.1
+openedx-events==9.0.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
@@ -65,10 +66,10 @@ pymongo==3.13.0
     # via edx-opaque-keys
 python-dateutil==2.8.2
     # via celery
-pytz==2022.2.1
+pytz==2022.7.1
     # via
     #   -c requirements/constraints.txt
-    #   django
+    #   djangorestframework
 six==1.16.0
     # via python-dateutil
 sqlparse==0.4.4

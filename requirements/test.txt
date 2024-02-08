@@ -12,7 +12,7 @@ asgiref==3.7.2
     # via
     #   -r requirements/base.txt
     #   django
-astroid==3.0.2
+astroid==3.0.3
     # via pylint
 attrs==23.2.0
     # via
@@ -22,6 +22,7 @@ backports-zoneinfo[tzdata]==0.2.1
     # via
     #   -r requirements/base.txt
     #   celery
+    #   django
     #   kombu
 billiard==4.2.0
     # via
@@ -31,7 +32,7 @@ celery==5.3.6
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
-certifi==2023.11.17
+certifi==2024.2.2
     # via requests
 charset-normalizer==3.3.2
     # via requests
@@ -54,9 +55,9 @@ click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
-coverage==7.4.0
+coverage==7.4.1
     # via -r requirements/test.in
-dill==0.3.7
+dill==0.3.8
     # via pylint
     # via
     #   -c requirements/constraints.txt
@@ -66,7 +67,7 @@ dill==0.3.7
     #   openedx-events
 django-crum==0.7.9
     # via -r requirements/base.txt
-djangorestframework==3.12.4
+djangorestframework==3.14.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
@@ -90,7 +91,7 @@ mccabe==0.7.0
     # via pylint
 mock==5.1.0
     # via -r requirements/test.in
-openedx-events==4.1.1
+openedx-events==9.0.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
@@ -98,7 +99,7 @@ pbr==6.0.0
     # via
     #   -r requirements/base.txt
     #   stevedore
-platformdirs==4.1.0
+platformdirs==4.2.0
     # via pylint
 prompt-toolkit==3.0.43
     # via
@@ -116,11 +117,11 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/base.txt
     #   celery
-pytz==2022.2.1
+pytz==2022.7.1
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
-    #   django
+    #   djangorestframework
 requests==2.31.0
     # via -r requirements/test.in
 six==1.16.0
@@ -154,7 +155,7 @@ tzdata==2023.4
     #   -r requirements/base.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.1.0
+urllib3==2.2.0
     # via requests
 vine==5.1.0
     # via
