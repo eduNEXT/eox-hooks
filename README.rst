@@ -27,6 +27,8 @@ Compatibility Notes
 +-------------------+----------------+
 |       Palm        |   >= 5.0       |
 +-------------------+----------------+
+|       Quince      |   >= 6.0       |
++-------------------+----------------+
 
 The following changes to the plugin settings are necessary. If the release you are looking for is
 not listed, then the accumulation of changes from previous releases is enough.
@@ -86,7 +88,7 @@ not listed, then the accumulation of changes from previous releases is enough.
    EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
    EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
 
-**Palm**
+**Palm and Quince**
 
 .. code-block:: yaml
 

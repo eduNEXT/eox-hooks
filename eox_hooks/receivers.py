@@ -26,7 +26,7 @@ def hooks_handler(sender, signal, **kwargs):
 
     trigger_event = None
     for uid in _get_dispatch_uid(signal.receivers):
-        if uid.startswith('eox-hooks:'):
+        if str(uid).startswith('eox-hooks:'):
             trigger_event = uid.split(':')[1]
             break
 
