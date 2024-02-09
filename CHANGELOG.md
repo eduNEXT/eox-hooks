@@ -5,6 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v6.0.0 - 2024-02-09
+
+### [6.0.0](https://github.com/eduNEXT/eox-hooks/compare/v5.1.0...v6.0.0) (2024-02-09)
+
+#### ⚠ BREAKING CHANGES
+
+* Quince release support
+  
+* fix(import): update URLs in favor of re_path for deprecation
+  
+* perf: update requirements
+  
+* fix: remove 3.10 version test
+  
+* perf: update workflows and readme
+  
+* fix: fix AttributeError to non-string uid
+  
+* perf: update tests
+  
+* perf:  update codelytv/pr-size-labeler
+  
+* perf: add django32, django42 file requirements
+  
+* perf: update Django version constrain
+  
+* fix: update python test version
+  
+* perf: update readme and constraints
+  
+* perf: update constraints
+  
+* perf: update requirements
+  
+* perf: update tox
+  
+* fix: update actions/setup-python version
+  
+* perf: quince release support (#48) ([3a330d7](https://github.com/eduNEXT/eox-hooks/commit/3a330d70cb21fabe3381e3cc2aeb120b7a93955e)), closes [#48](https://github.com/eduNEXT/eox-hooks/issues/48)
+   
+
 ## v5.1.0 - 2023-11-24
 
 ### [5.1.0](https://github.com/eduNEXT/eox-hooks/compare/v5.0.0...v5.1.0) (2023-11-24)
