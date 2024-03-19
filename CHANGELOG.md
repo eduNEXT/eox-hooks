@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v6.1.0 - 2024-03-19
+
+### [6.1.0](https://github.com/eduNEXT/eox-hooks/compare/v6.0.0...v6.1.0) (2024-03-19)
+
+#### Features
+
+* add workflow to add items to the Dedalo project DS-831 ([#49](https://github.com/eduNEXT/eox-hooks/issues/49)) ([54c66db](https://github.com/eduNEXT/eox-hooks/commit/54c66db9b474df85187eb01bace630b376eb95a4))
+
 ## v6.0.0 - 2024-02-09
 
 ### [6.0.0](https://github.com/eduNEXT/eox-hooks/compare/v5.1.0...v6.0.0) (2024-02-09)
@@ -44,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * fix: update actions/setup-python version
   
 * perf: quince release support (#48) ([3a330d7](https://github.com/eduNEXT/eox-hooks/commit/3a330d70cb21fabe3381e3cc2aeb120b7a93955e)), closes [#48](https://github.com/eduNEXT/eox-hooks/issues/48)
-   
+  
 
 ## v5.1.0 - 2023-11-24
 
