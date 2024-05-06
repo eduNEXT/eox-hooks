@@ -1,5 +1,5 @@
 """
-Test views file.
+Test integration file.
 """
 from unittest.mock import MagicMock, patch
 from django.test import TestCase
