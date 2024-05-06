@@ -1,8 +1,8 @@
 """
 Test views file.
 """
-from django.test import TestCase
 from unittest.mock import patch, MagicMock
+from django.test import TestCase
 from eox_hooks.actions import post_to_webhook_url
 
 
@@ -38,11 +38,17 @@ class TutorIntegrationTestCase(TestCase):
 
 
 class TestPostToWebhook(TestCase):
-    @patch('eox_hooks.actions.requests.post')  # Mock de la función requests.post
+    """
+    Test eox-hooks functions
+    """
+    @patch('eox_hooks.actions.requests.post')
     def test_post_to_webhook_url(self, mock_post):
+        """
+        Test function post_to_webhook_url
+        """
         mock_trigger_event = "trigger_event"
 
-        mock_post.return_value = MagicMock(status_code=200)  # Simula una respuesta exitosa
+        mock_post.return_value = MagicMock(status_code=200)
 
         result = post_to_webhook_url(trigger_event=mock_trigger_event)
 
