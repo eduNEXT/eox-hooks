@@ -2,7 +2,9 @@
 Test integration file.
 """
 from unittest.mock import MagicMock, patch  # pylint: disable=C0411
+
 from django.test import TestCase
+
 from eox_hooks.actions import post_to_webhook_url
 
 
