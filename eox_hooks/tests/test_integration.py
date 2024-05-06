@@ -2,8 +2,8 @@
 Test integration file.
 """
 from unittest.mock import MagicMock, patch
-from django.test import TestCase
 from eox_hooks.actions import post_to_webhook_url
+from django.test import TestCase
 
 
 class TutorIntegrationTestCase(TestCase):
