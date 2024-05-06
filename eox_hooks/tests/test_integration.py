@@ -23,18 +23,19 @@ class TutorIntegrationTestCase(TestCase):
         Running this imports means that our backends import the right signature
         """
         import eox_hooks.edxapp_wrapper.backends.course_modes_j_v1  # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.course_modes_l_v1_test # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.course_modes_l_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.courses_j_v1_test # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.courses_j_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.courses_l_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.courses_p_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.enrollments_l_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.enrollments_l_v1_test # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.enrollments_j_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.models_j_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.models_l_v1 # isort:skip
-        import eox_hooks.edxapp_wrapper.backends.models_l_v1_test # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.course_modes_l_v1_test  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.course_modes_l_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.courses_j_v1_test  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.courses_j_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.courses_l_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.courses_p_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.enrollments_l_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.enrollments_l_v1_test  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.enrollments_j_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.models_j_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.models_l_v1  # isort:skip
+        import eox_hooks.edxapp_wrapper.backends.models_l_v1_test  # isort:skip
+
 
 class TestPostToWebhook(TestCase):
     @patch('eox_hooks.actions.requests.post')  # Mock de la función requests.post
