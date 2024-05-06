@@ -1,8 +1,8 @@
 """
 Test views file.
 """
-from django.test import TestCase
 from unittest.mock import MagicMock, patch
+from django.test import TestCase
 from eox_hooks.actions import post_to_webhook_url
 
 
