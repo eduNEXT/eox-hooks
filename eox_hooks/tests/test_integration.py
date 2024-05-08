@@ -26,4 +26,3 @@ class TutorIntegrationTestCase(TestCase):
         import eox_hooks.edxapp_wrapper.backends.enrollments_j_v1  # isort:skip
         import eox_hooks.edxapp_wrapper.backends.models_j_v1  # isort:skip
         import eox_hooks.edxapp_wrapper.backends.models_l_v1  # isort:skip
-
