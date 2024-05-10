@@ -1,8 +1,8 @@
 """
 Simple backend that returns the platform's models
 """
-from lms.djangoapps.certificates.models import GeneratedCertificate  # pylint: disable=C0415, E0401
 from common.djangoapps.student.models import UserProfile  # pylint: disable=C0415, E0401
+from lms.djangoapps.certificates.models import GeneratedCertificate  # pylint: disable=C0415, E0401
 
 
 def get_certificate_model():
