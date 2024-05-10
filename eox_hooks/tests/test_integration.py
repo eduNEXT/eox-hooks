@@ -1,8 +1,8 @@
 """
 Test integration file.
 """
-from django.test import TestCase
 import unittest
+from django.test import TestCase
 
 
 @unittest.skip("Disabled")
