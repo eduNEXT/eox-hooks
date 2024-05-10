@@ -4,7 +4,6 @@ Backend file for Course Enrollment related objects.
 from common.djangoapps.student.models import CourseEnrollment  # pylint: disable=C0415, E0401
 
 
-
 def get_course_enrollment():
     """
     Gets Course Enrollment class model from edxapp.

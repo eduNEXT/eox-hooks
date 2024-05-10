@@ -5,7 +5,6 @@ from lms.djangoapps.courseware.block_render import load_single_xblock  # pylint:
 from xmodule.modulestore.exceptions import ItemNotFoundError  # pylint: disable=C0415, E0401
 
 
-
 def get_load_single_xblock():
     """
     Gets load_single_xblock function from edxapp.
