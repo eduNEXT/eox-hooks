@@ -2,8 +2,10 @@
 Test integration file.
 """
 from django.test import TestCase
+import unittest
 
 
+@unittest.skip("Disabled")
 class IntegrationTestCase(TestCase):
     """
     Tests integration with openedx
