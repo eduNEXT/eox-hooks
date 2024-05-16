@@ -47,6 +47,7 @@ DATABASES = {
     }
 }
 
+
 def plugin_settings(settings):  # pylint: disable=function-redefined
     """
     For the platform tests
