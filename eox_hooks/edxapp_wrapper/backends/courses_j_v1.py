@@ -1,6 +1,7 @@
 """
 Backend file for Course related objects.
 """
+from courseware.module_render import load_single_xblock  # pylint: disable=C0415, E0401
 
 
 def get_load_single_xblock():
@@ -10,7 +11,6 @@ def get_load_single_xblock():
     Returns:
         [Function]: load_single_xblock function.
     """
-    from courseware.module_render import load_single_xblock  # pylint: disable=C0415, E0401
     return load_single_xblock
 
 

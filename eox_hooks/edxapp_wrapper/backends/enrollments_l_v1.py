@@ -1,6 +1,7 @@
 """
 Backend file for Course Enrollment related objects.
 """
+from common.djangoapps.student.models import CourseEnrollment  # pylint: disable=C0415, E0401
 
 
 def get_course_enrollment():
@@ -10,5 +11,4 @@ def get_course_enrollment():
     Returns:
         [Class]: Course Enrollment edxapp model.
     """
-    from common.djangoapps.student.models import CourseEnrollment  # pylint: disable=C0415, E0401
     return CourseEnrollment

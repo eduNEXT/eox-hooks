@@ -7,3 +7,4 @@ coverage
 mock
 testfixtures
 requests
+pyyaml
