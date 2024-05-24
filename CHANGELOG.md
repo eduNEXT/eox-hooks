@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v6.2.0 - 2024-05-24
+
+### [6.2.0](https://github.com/eduNEXT/eox-hooks/compare/v6.1.0...v6.2.0) (2024-05-24)
+
+#### Features
+
+* add test integration ([#50](https://github.com/eduNEXT/eox-hooks/issues/50)) ([bfad685](https://github.com/eduNEXT/eox-hooks/commit/bfad685339eb4e5214596ffe57d9ef3c827c80d5))
+
 ## v6.1.0 - 2024-03-19
 
 ### [6.1.0](https://github.com/eduNEXT/eox-hooks/compare/v6.0.0...v6.1.0) (2024-03-19)
