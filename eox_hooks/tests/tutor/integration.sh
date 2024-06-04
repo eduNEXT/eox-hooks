@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Install the package in the edxapp env
+# This script installs the package in the edxapp environment, installs test requirements from Open edX and runs the tests using the Tutor settings
 echo "Install package"
 pip install -e ../eox-hooks
 
-# Install test requirements from openedx
 echo "Install test-requirements"
 make test-requirements
 
-# Running the tests using the tutor settings
 echo "Run tests"
 pytest -s --ds=lms.envs.tutor.test /openedx/eox-hooks/eox_hooks/tests/tutor
