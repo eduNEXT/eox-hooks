@@ -9,12 +9,12 @@ class TutorIntegrationTestCase(TestCase):
     Tests integration with openedx
     """
 
-    @override_settings(ALLOWED_HOSTS=['local.edly.io'])
+    @override_settings(ALLOWED_HOSTS=['local.edly.io'], SITE_ID=2)
     def setUp(self):
         """
         Set up the base URL for the tests
         """
-        print(Site.objects.all())
+        print(Site.objects.filter(pk=1))
         self.base_url = 'http://local.edly.io'
 
     # pylint: disable=import-outside-toplevel,unused-import
