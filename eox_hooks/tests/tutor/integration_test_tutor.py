@@ -14,7 +14,7 @@ class TutorIntegrationTestCase(TestCase):
         """
         Set up the base URL for the tests
         """
-        Site.objects.create(domain='local.edly.io', name='local.edly.io')
+        print(Site.objects.all())
         self.base_url = 'http://local.edly.io'
 
     # pylint: disable=import-outside-toplevel,unused-import
