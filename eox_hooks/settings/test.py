@@ -47,6 +47,7 @@ DATABASES = {
     }
 }
 
+SITE_ID=2
 
 def plugin_settings(settings):  # pylint: disable=function-redefined
     """
