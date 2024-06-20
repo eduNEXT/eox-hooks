@@ -2,7 +2,7 @@
 Test integration file.
 """
 from django.test import TestCase, override_settings
-
+from django.contrib.sites.models import Site
 
 class TutorIntegrationTestCase(TestCase):
     """
@@ -14,6 +14,7 @@ class TutorIntegrationTestCase(TestCase):
         """
         Set up the base URL for the tests
         """
+        Site.objects.create(domain='local.edly.io', name='local.edly.io')
         self.base_url = 'http://local.edly.io'
 
     # pylint: disable=import-outside-toplevel,unused-import
