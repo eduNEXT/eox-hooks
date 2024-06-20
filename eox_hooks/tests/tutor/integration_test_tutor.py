@@ -30,7 +30,7 @@ class TutorIntegrationTestCase(TestCase):
         """
         Tests the info view endpoint in Tutor
         """
-        info_view_url = f'{self.base_url}/eox-hooks/eox-info/'
+        info_view_url = f'{self.base_url}/eox-hooks/eox-info'
 
         # Simulate a GET request to the info endpoint using the full URL
         response = self.client.get(info_view_url)
