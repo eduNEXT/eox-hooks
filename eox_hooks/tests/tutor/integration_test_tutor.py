@@ -4,12 +4,12 @@ Test integration file.
 from django.test import TestCase, override_settings
 
 
-@override_settings(ALLOWED_HOSTS=['local.edly.io'])
 class TutorIntegrationTestCase(TestCase):
     """
     Tests integration with openedx
     """
 
+    @override_settings(ALLOWED_HOSTS=['local.edly.io'])
     def setUp(self):
         """
         Set up the base URL for the tests
