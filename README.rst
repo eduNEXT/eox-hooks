@@ -29,7 +29,7 @@ Compatibility Notes
 +-------------------+----------------+
 |       Quince      |   >= 6.0       |
 +-------------------+----------------+
-|       Redwood     |   >= 6.0       |
+|       Redwood     |   >= 6.3.0     |
 +------------------+-----------------+
 
 The following changes to the plugin settings are necessary. If the release you are looking for is
