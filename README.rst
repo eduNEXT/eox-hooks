@@ -1,14 +1,94 @@
 =========
-Eox-hooks
+EOX Hooks
 =========
 
-.. |build-status| image:: https://circleci.com/gh/eduNEXT/eox-hooks.svg?style=svg
+|Maintainance Badge| |Test Badge| |PyPI Badge|
 
-Eox-hooks (A.K.A. Edunext Open extensions) is an `openedx plugin`_, for the `edx-platform`_ that allows extending
-edx-platform through Django configurations and Open edX Events.
+.. |Maintainance Badge| image:: https://img.shields.io/badge/Status-Maintained-brightgreen
+   :alt: Maintainance Status
+.. |Test Badge| image:: https://img.shields.io/github/actions/workflow/status/edunext/eox-hooks/.github%2Fworkflows%2Ftests.yml?label=Test
+   :alt: GitHub Actions Workflow Test Status
+.. |PyPI Badge| image:: https://img.shields.io/pypi/v/eox-hooks?label=PyPI
+   :alt: PyPI - Version
+
+This plugin extends and customizes the `edx-platform`_ by leveraging Open edX and Django events to trigger specific actions. Key features include:
+
+- **Post to Webhook URL:** Sends data to a specified URL based on the eox-hooks settings.
+- **Get Extended Certificate Data:** Adds comprehensive certificate information to the webhook request.
+- **Trigger Enrollments Creation:** Initiates an asynchronous task to enroll users in a list of courses.
+- **Trigger Grades Assignment:** Propagates grades to a specified course component.
+- **Create Enrollments for Program:** Enroll users in a predefined list of courses constituting a Course Program.
+
+
+Installation
+=============
+
+#. Add this plugin in your Tutor ``config.yml`` with the ``OPENEDX_EXTRA_PIP_REQUIREMENTS`` setting.
+
+   .. code-block:: yaml
+      
+      OPENEDX_EXTRA_PIP_REQUIREMENTS:
+         - eox-hooks=={{version}}
+         
+#. Save the configuration with ``tutor config save``.
+#. Build the image and launch your platform with ``tutor local launch``.
+
+
+Usage
+======
+
+Before using eox-hooks, you need to set ``USE_EOX_HOOKS`` in ``True`` and configure ``EOX_HOOKS_DEFINITIONS`` as follows:
+
+.. code-block:: yaml
+
+    USE_EOX_HOOKS: True
+    EOX_HOOKS_DEFINITIONS:
+    {
+        "<trigger_event>":
+        {
+            "action": "<action_name>",
+            "config":
+            {
+                "url": "https://webhook.site",
+            },
+            "fail_silently": False,
+            "module": "<path_to_module>",
+        },
+    }
+
+Where:
+- **trigger_event:** The name of the event the platform sends and eox-hooks listen, such as ``post_enrollment``. For a detailed list, visit the `trigger events examples file <docs/trigger_event_examples.rst>`_.
+- **action_name:** Specify the name of the action to execute. For example: ``custom_action``.
+- **config:** Adds more information to the action.
+- **fail_silently:** Defines what happens if an exception arises while executing the action. If ``False``, then the exception is raised.
+- **path_to_module:** Path to the module defining the action to execute. For example: ``eox_hooks.actions``.
+
+Example
+########
+
+.. code-block:: yaml
+
+    EOX_HOOKS_DEFINITIONS:
+    {
+        "post_register":
+        {
+            "action": "post_to_webhook_url",
+            "config":
+            {
+                "fields": { "recipient_email": "user.pii.email" },
+                "send_certificate_data": False,
+                "url": "https://webhook.site",
+            },
+            "fail_silently": True,
+            "module": "eox_hooks.actions",
+        },
+    }
+
+For more examples visit, the `hooks settings example file <docs/hooks_example.rst>`_.
+
 
 Compatibility Notes
---------------------
+====================
 
 +-------------------+----------------+
 | Open edX Release  |  Version       |
@@ -32,174 +112,19 @@ Compatibility Notes
 |       Redwood     |   >= 6.3.0     |
 +-------------------+----------------+
 
-The following changes to the plugin settings are necessary. If the release you are looking for is
-not listed, then the accumulation of changes from previous releases is enough.
-
-
-**Juniper**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-**Koa**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-**Lilac**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-**Maple**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-**Nutmeg**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-**Olive**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_l_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-**Palm and Quince**
-
-.. code-block:: yaml
-
-   EOX_HOOKS_ENROLLMENTS_BACKEND: "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
-   EOX_HOOKS_COURSES_BACKEND: "eox_hooks.edxapp_wrapper.backends.courses_p_v1"
-   EOX_HOOKS_COURSE_MODES_BACKEND: "eox_hooks.edxapp_wrapper.backends.course_modes_l_v1"
-   EOX_HOOKS_MODELS_BACKEND: "eox_hooks.edxapp_wrapper.backends.models_l_v1"
-
-
-These settings can be changed in ``eox_hooks/settings/common.py`` or, for example, in ansible configurations.
-
-**NOTE**:
-
-
-- The current ``common.py`` works with Open edX Lilac version.
-- Koa and Lilac work with PR (backports) 28266 and 28640 from Maple release.
-
-Open edX devstack
-*****************
-
-- Clone this repo in the src folder of your devstack.
-- Open a new Lms/Devstack shell.
-- Install the plugin as follows: pip install -e /path/to/your/src/folder
-- Restart Lms/Studio services.
-
-Usage
-#####
-
-Before using eox-hooks, this plugin must be configured using EOX_HOOKS_DEFINITIONS:
-
-.. code-block:: python
-
-        {
-            "trigger_event": {
-                "module": "path_to_module",
-                "action": "action_name",
-                "fail_silently": True,
-            },
-        }
-
-Where:
-
-- trigger_event: is the name of the event sent by the platform. For example: pre_enrollment_trigger.
-- module: path to the module where the action to be executed is defined. For example: eox_hooks.tests.tests_utils.
-- action: name of the action to be executed. For example: custom_action.
-- fail_silently: defines what happens if an exception raises while executing the action. If False, then the exception is raised.
-
-Examples
-########
-
-.. code-block:: json
-
-        "EOX_HOOKS_DEFINITIONS": {
-            "post_certificate_creation": {
-                "action": "post_to_webhook_url",
-                "config": {
-                    "send_certificate_data": true,
-                    "url": "https://webhook.site"
-                },
-                "fail_silently": true,
-                "module": "eox_hooks.actions"
-            }
-        }
-
-.. code-block:: json
-
-        "EOX_HOOKS_DEFINITIONS": {
-            "post_register": {
-                "action": "post_to_webhook_url",
-                "fail_silently": true,
-                "module": "eox_hooks.actions",
-                "config" : {
-                    "send_certificate_data": false,
-                    "url": "https://webhook.site",
-                    "fields": {
-                            "recipient_email": "user.pii.email"
-                    }
-                }
-            }
-        }
-
-.. code-block:: json
-
-        "EOX_HOOKS_DEFINITIONS": {
-            "post_certificate_creation": {
-                "action": "trigger_grades_assignment",
-                "fail_silently": true,
-                "module": "eox_hooks.actions"
-            }
-        }
-
-.. code-block:: json
-
-        "EOX_HOOKS_DEFINITIONS": {
-            "post_enrollment": {
-                "action": "trigger_enrollments_creation",
-                "fail_silently": false,
-                "module": "eox_hooks.actions"
-            }
-        }
-
 
 How to Contribute
-#################
+==================
 
 Contributions are welcome! See our `CONTRIBUTING`_ file for more
 information – it also contains guidelines for how to maintain high code
 quality, which will make your contribution more likely to be accepted.
 
 .. _CONTRIBUTING: https://github.com/eduNEXT/eox-hooks/blob/master/CONTRIBUTING.rst
-.. _edx-platform: https://github.com/edx/edx-platform/
-.. _openedx plugin: https://github.com/edx/edx-platform/tree/master/openedx/core/djangoapps/plugins
+.. _edx-platform: https://github.com/openedx/edx-platform/
+
+
+License
+=======
+
+This project is licensed under the AGPL-3.0 License. See the `LICENSE <LICENSE.txt>`_ file for details.
