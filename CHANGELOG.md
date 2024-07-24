@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v6.3.0](https://github.com/eduNEXT/eox-hooks/compare/v6.2.0...v6.3.0) - (2024-07-24)
+
+### Changed
+
+- **Redwood Support**: Upgrade requirements base on edx-platform redwood
+  release, support for integration tests in the redwood environment is added
+
 ## v6.2.0 - 2024-05-24
 
 ### [6.2.0](https://github.com/eduNEXT/eox-hooks/compare/v6.1.0...v6.2.0) (2024-05-24)
