@@ -37,7 +37,7 @@ Installation
 Usage
 ======
 
-Before using eox-hooks, you need to set ``USE_EOX_HOOKS`` in ``True`` and configure ``EOX_HOOKS_DEFINITIONS`` as follows:
+Before using eox-hooks, you need to set ``USE_EOX_HOOKS`` in ``True`` and configure ``EOX_HOOKS_DEFINITIONS`` in each tenant or site configuration that wants to use the plugin as follows:
 
 .. code-block:: yaml
 
@@ -57,8 +57,9 @@ Before using eox-hooks, you need to set ``USE_EOX_HOOKS`` in ``True`` and config
     }
 
 Where:
+
 - **trigger_event:** The name of the event the platform sends and eox-hooks listen, such as ``post_enrollment``. For a detailed list, visit the `trigger events examples file <docs/trigger_event_examples.rst>`_.
-- **action_name:** Specify the name of the action to execute. For example: ``custom_action``.
+- **action_name:** Specify the name of the action to execute. For example: ``custom_action``. To see the available actions in eox-hooks, visit the `default hook actions file <docs/default_hook_actions.rst>`_.
 - **config:** Adds more information to the action.
 - **fail_silently:** Defines what happens if an exception arises while executing the action. If ``False``, then the exception is raised.
 - **path_to_module:** Path to the module defining the action to execute. For example: ``eox_hooks.actions``.
@@ -112,6 +113,14 @@ Compatibility Notes
 |       Redwood     |   >= 6.3.0     |
 +-------------------+----------------+
 
+The plugin is configured for the latest release (Quince). The following changes in the plugin settings should be applied to be used for previous releases.
+Those settings can be changed in ``eox_hooks/settings/common.py`` or, for example, in the instance configurations.
+
+
+🚨 If the release you are looking for is not listed, please note:
+
+- If the Open edX release is compatible with the current eox-hooks version (see `Compatibility Notes <https://github.com/eduNEXT/eox-hooks?tab=readme-ov-file#compatibility-notes>`_), the default configuration is sufficient.
+- If incompatible, you can refer to the README from the relevant version tag for configuration details (e.g., `v5.1.0 README <https://github.com/eduNEXT/eox-hooks/blob/v5.1.0/README.rst>`_).
 
 How to Contribute
 ==================
