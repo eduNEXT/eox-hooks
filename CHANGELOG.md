@@ -7,10 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v6.3.0](https://github.com/eduNEXT/eox-hooks/compare/v6.2.0...v6.3.0) - (2024-07-24)
 
+### Added
+
+- **Integration Tests**: A new GitHub workflow has been added to run
+  integration tests. These tests validate backend imports and ensure the
+  `/eox-info` endpoint functions correctly.
+
 ### Changed
 
 - **Redwood Support**: Upgrade requirements base on edx-platform redwood
-  release, support for integration tests in the redwood environment is added
+  release update GitHub workflows with new Python (3.10 and 3.11) and actions
+  version, and update integration test to use new redwood release with Tutor.
 
 ## v6.2.0 - 2024-05-24
 
