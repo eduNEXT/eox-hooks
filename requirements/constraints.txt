@@ -12,7 +12,13 @@
 # Common constraints for Open edX repos
 -c https://raw.githubusercontent.com/openedx/edx-lint/master/edx_lint/files/common_constraints.txt
 
+# As it is not clarified what exact breaking changes will be introduced as per
+# the next major release, ensure the installed version is within boundaries.
 celery>=5.2.2,<6.0.0
+
+# Adding pin to avoid any major upgrade.
+# 3.15.1 is the latest version that works with Django 3.2
 djangorestframework<=3.14.0
+
 openedx-events<=9.0.0
 pytz<=2022.7.1
