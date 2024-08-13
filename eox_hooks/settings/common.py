@@ -37,7 +37,7 @@ def plugin_settings(settings):
     """
     Set of plugin settings used by the Open Edx platform.
     More info:
-    https://github.com/edx/edx-platform/blob/master/openedx/core/djangoapps/plugins/README.rst
+    https://github.com/openedx/edx-platform/blob/master/openedx/core/djangoapps/plugins/README.rst
     """
     settings.EOX_HOOKS_ENROLLMENTS_BACKEND = "eox_hooks.edxapp_wrapper.backends.enrollments_l_v1"
     settings.EOX_HOOKS_COURSES_BACKEND = "eox_hooks.edxapp_wrapper.backends.courses_p_v1"
