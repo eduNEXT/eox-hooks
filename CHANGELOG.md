@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v7.0.0](https://github.com/eduNEXT/eox-hooks/compare/v6.3.0...v7.0.0) - (2024-10-22)
+
+#### ⚠ BREAKING CHANGES
+
+- **Dropped Support for Django 3.2**: Removed support for Django 3.2 in this plugin. As a result, we have also dropped support for Open edX releases from Maple up to and including Palm, which rely on Django 3.2. Future versions of this plugin may not be compatible with these Open edX releases.
+
 ## [v6.3.0](https://github.com/eduNEXT/eox-hooks/compare/v6.2.0...v6.3.0) - (2024-07-24)
 
 ### Added
