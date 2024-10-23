@@ -24,6 +24,7 @@ backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     #   -r requirements/base.txt
     #   celery
     #   django
+    #   djangorestframework
     #   kombu
 billiard==4.2.1
     # via
@@ -68,10 +69,8 @@ dill==0.3.9
     #   openedx-events
 django-crum==0.7.9
     # via -r requirements/base.txt
-djangorestframework==3.14.0
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.txt
+djangorestframework==3.15.2
+    # via -r requirements/base.txt
 dnspython==2.6.1
     # via
     #   -r requirements/base.txt
@@ -136,11 +135,6 @@ python-dateutil==2.9.0.post0
     # via
     #   -r requirements/base.txt
     #   celery
-pytz==2022.7.1
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.txt
-    #   djangorestframework
 pyyaml==6.0.2
     # via -r requirements/test.in
 requests==2.32.3
