@@ -10,8 +10,9 @@ asgiref==3.8.1
     # via django
 attrs==24.2.0
     # via openedx-events
-backports-zoneinfo[tzdata]==0.2.1
+backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   celery
     #   django
     #   kombu
