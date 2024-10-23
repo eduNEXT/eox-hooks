@@ -38,7 +38,7 @@ upgrade: ## update the requirements/*.txt files with the latest packages satisfy
 	$(PIP_COMPILE) -o requirements/test.txt requirements/test.in
 	$(PIP_COMPILE) -o requirements/tox.txt requirements/tox.in
 
-	grep -e "^django==" requirements/test.txt > requirements/django.txt
+	grep -e "^django==" requirements/test.txt > requirements/django42.txt
 	sed '/^[dD]jango==/d;' requirements/test.txt > requirements/test.tmp
 	mv requirements/test.tmp requirements/test.txt
 
@@ -47,9 +47,13 @@ quality: clean ## check coding style with pycodestyle and pylint
 	$(TOX) pylint -d duplicate-code ./eox_hooks --rcfile=./setup.cfg
 	$(TOX) isort --check-only --diff ./eox_hooks
 
+run-integration-tests:
+	pip install -r requirements/test.txt
+	pytest -rPf ./eox_hooks/tests/integration
+
 test-python: clean ## Run test suite. Remove omitted files when tests are added.
 	$(TOX) pip install -r requirements/test.txt --exists-action w
-	$(TOX) coverage run --source ./eox_hooks manage.py test
+	$(TOX) coverage run --source="." -m pytest ./eox_hooks --ignore-glob='**/integration/*'
 	$(TOX) coverage report -m --omit=eox_hooks/edxapp_wrapper/* --fail-under=80
 
 run-tests: test-python quality
