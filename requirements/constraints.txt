@@ -21,4 +21,3 @@ pytz<=2022.7.1
 
 # backports.zoneinfo is only needed for Python < 3.9
 backports.zoneinfo; python_version<'3.9'
-
