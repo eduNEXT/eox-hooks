@@ -16,8 +16,5 @@
 # the next major release, ensure the installed version is within boundaries.
 celery>=5.2.2,<6.0.0
 
-#Necessary for python 3.8
-openedx-events<=9.0.0
-
 # backports.zoneinfo is only needed for Python < 3.9
 backports.zoneinfo; python_version<'3.9'
