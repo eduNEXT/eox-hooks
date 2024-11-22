@@ -16,13 +16,8 @@
 # the next major release, ensure the installed version is within boundaries.
 celery>=5.2.2,<6.0.0
 
-# Adding pin to avoid any major upgrade.
-# 3.15.1 is the latest version that works with Django 3.2
-djangorestframework<=3.14.0
-
 openedx-events<=9.0.0
 pytz<=2022.7.1
 
 # backports.zoneinfo is only needed for Python < 3.9
 backports.zoneinfo; python_version<'3.9'
-
