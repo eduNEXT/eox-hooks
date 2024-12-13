@@ -65,8 +65,10 @@ kombu==5.4.2
     # via celery
 newrelic==10.3.1
     # via edx-django-utils
-openedx-events==9.15.0
-    # via -r requirements/base.in
+openedx-events==9.15.0 ; python_version >= "3.11"
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/base.in
 pbr==6.1.0
     # via stevedore
 prompt-toolkit==3.0.48

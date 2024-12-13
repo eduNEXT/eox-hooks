@@ -120,8 +120,10 @@ newrelic==10.3.1
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.15.0
-    # via -r requirements/base.txt
+openedx-events==9.15.0 ; python_version >= "3.11"
+    # via
+    #   -c requirements/constraints.txt 
+    #   -r requirements/base.txt
 packaging==24.2
     # via pytest
 pbr==6.1.0
