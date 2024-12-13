@@ -24,4 +24,4 @@ astroid==3.3.6; python_version >= '3.9'
 coverage==7.6.9; python_version >= '3.9'
 dnspython==2.7.0 ; python_version >= '3.9'
 openedx-events==9.15.0 ; python_version >= '3.11'
-pylint<3.0
+pylint<=3.2.7

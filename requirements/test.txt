@@ -148,7 +148,7 @@ pycparser==2.22
     # via
     #   -r requirements/base.txt
     #   cffi
-pylint==2.17.7
+pylint==3.2.7
     # via
     #   -c requirements/constraints.txt 
     #   -r requirements/test.in
