@@ -21,3 +21,4 @@ celery>=5.2.2,<6.0.0
 backports.zoneinfo; python_version<'3.9'
 
 astroid==3.2.4; python_version<'3.9'
+astroid==3.3.6; python_version >= '3.9'
