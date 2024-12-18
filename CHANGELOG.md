@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v7.1.0](https://github.com/eduNEXT/eox-hooks/compare/v7.0.0...v7.1.0) - (2024-12-13)
+## [v8.0.0](https://github.com/eduNEXT/eox-hooks/compare/v7.0.0...v8.0.0) - (2024-12-13)
 
 ### Changed
 
-- **Sumac Support**: Upgrade requirements base on edx-platform redwood
+- **Sumac Support**: Removed support for Python 3.8. Upgrade requirements base on edx-platform redwood
   release update GitHub workflows and actions version, and update integration test to use new Sumac release with Tutor.
 
 ## [v7.0.0](https://github.com/eduNEXT/eox-hooks/compare/v6.3.0...v7.0.0) - (2024-11-20)

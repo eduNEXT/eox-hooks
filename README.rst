@@ -112,7 +112,7 @@ Compatibility Notes
 +---------------------+----------------+
 |  Redwood            |  >= 6.3.0      |
 +---------------------+----------------+
-|  Sumac              |  >= 7.1.0      |
+|  Sumac              |  >= 8.0.0      |
 +---------------------+----------------+
 
 The plugin is configured for the latest release (Sumac). The following changes in the plugin settings should be applied to be used for previous releases.
