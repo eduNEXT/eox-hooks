@@ -12,11 +12,9 @@ asgiref==3.8.1
     # via
     #   -r requirements/base.txt
     #   django
-astroid==3.2.4 ; python_version >= "3.9"
+astroid==3.3.6
     # via pylint
-    # via
-    #   -c requirements/constraints.txt
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -28,7 +26,7 @@ celery==5.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
-certifi==2024.8.30
+certifi==2024.12.14
     # via requests
 cffi==1.17.1
     # via
@@ -56,10 +54,8 @@ click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
-coverage==7.6.9 ; python_version >= "3.9"
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/test.in
+coverage==7.6.9
+    # via -r requirements/test.in
 dill==0.3.9
     # via pylint
     # via
@@ -80,9 +76,8 @@ django-waffle==4.2.0
     #   edx-django-utils
 djangorestframework==3.15.2
     # via -r requirements/base.txt
-dnspython==2.7.0 ; python_version >= "3.9"
+dnspython==2.7.0
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   pymongo
 edx-ccx-keys==2.0.2
@@ -116,14 +111,12 @@ mccabe==0.7.0
     # via pylint
 mock==5.1.0
     # via -r requirements/test.in
-newrelic==10.3.1
+newrelic==10.4.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.15.0 ; python_version >= "3.11"
-    # via
-    #   -c requirements/constraints.txt 
-    #   -r requirements/base.txt
+openedx-events==9.15.0
+    # via -r requirements/base.txt
 packaging==24.2
     # via pytest
 pbr==6.1.0
@@ -148,10 +141,8 @@ pycparser==2.22
     # via
     #   -r requirements/base.txt
     #   cffi
-pylint==3.2.7
-    # via
-    #   -c requirements/constraints.txt 
-    #   -r requirements/test.in
+pylint==3.3.2
+    # via -r requirements/test.in
 pymongo==4.10.1
     # via
     #   -r requirements/base.txt

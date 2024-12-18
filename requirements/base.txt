@@ -8,7 +8,7 @@ amqp==5.3.1
     # via kombu
 asgiref==3.8.1
     # via django
-attrs==24.2.0
+attrs==24.3.0
     # via openedx-events
 billiard==4.2.1
     # via celery
@@ -63,12 +63,10 @@ fastavro==1.9.7
     # via openedx-events
 kombu==5.4.2
     # via celery
-newrelic==10.3.1
+newrelic==10.4.0
     # via edx-django-utils
-openedx-events==9.15.0 ; python_version >= "3.11"
-    # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.in
+openedx-events==9.15.0
+    # via -r requirements/base.in
 pbr==6.1.0
     # via stevedore
 prompt-toolkit==3.0.48
