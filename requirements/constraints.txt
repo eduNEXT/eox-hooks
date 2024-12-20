@@ -16,6 +16,3 @@
 # the next major release, ensure the installed version is within boundaries.
 # Issue for unpinning: https://github.com/openedx/edx-platform/issues/35280
 celery>=5.2.2,<6.0.0
-
-# backports.zoneinfo is only needed for Python < 3.9
-backports.zoneinfo; python_version<'3.9'
