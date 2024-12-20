@@ -108,12 +108,14 @@ Compatibility Notes
 +---------------------+----------------+
 |  Palm               |  >= 5.0 < 7.0  |
 +---------------------+----------------+
-|  Quince             |  >= 6.0        |
+|  Quince             |  >= 6.0 < 8.0  |
 +---------------------+----------------+
 |  Redwood            |  >= 6.3.0      |
 +---------------------+----------------+
+|  Sumac              |  >= 8.0.0      |
++---------------------+----------------+
 
-The plugin is configured for the latest release (Quince). The following changes in the plugin settings should be applied to be used for previous releases.
+The plugin is configured for the latest release (Sumac). The following changes in the plugin settings should be applied to be used for previous releases.
 Those settings can be changed in ``eox_hooks/settings/common.py`` or, for example, in the instance configurations.
 
 
