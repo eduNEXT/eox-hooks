@@ -140,9 +140,10 @@ class TestAuthEventsHandler(TestCase):
             user=self.user,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.user, action_handler.call_args.kwargs.get("user"))
 
     @override_settings(EOX_HOOKS_DEFINITIONS={"post_session_login": {}})
@@ -171,9 +172,10 @@ class TestAuthEventsHandler(TestCase):
             user=self.user,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.user, action_handler.call_args.kwargs.get("user"))
 
 
@@ -232,9 +234,10 @@ class TestEnrollmentEventsHandler(TestCase):
             enrollment=self.enrollment,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.enrollment, action_handler.call_args.kwargs.get("enrollment"))
 
     @override_settings(EOX_HOOKS_DEFINITIONS={"post_enrollment_change": {}})
@@ -264,9 +267,10 @@ class TestEnrollmentEventsHandler(TestCase):
             enrollment=self.enrollment,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.enrollment, action_handler.call_args.kwargs.get("enrollment"))
 
     @override_settings(EOX_HOOKS_DEFINITIONS={"post_unenrollment": {}})
@@ -296,9 +300,10 @@ class TestEnrollmentEventsHandler(TestCase):
             enrollment=self.enrollment,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.enrollment, action_handler.call_args.kwargs.get("enrollment"))
 
 
@@ -360,9 +365,10 @@ class TestCertificateEventsHandler(TestCase):
             certificate=self.certificate,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.certificate, action_handler.call_args.kwargs.get("certificate"))
 
     @override_settings(EOX_HOOKS_DEFINITIONS={"post_certificate_change": {}})
@@ -391,9 +397,10 @@ class TestCertificateEventsHandler(TestCase):
             certificate=self.certificate,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.certificate, action_handler.call_args.kwargs.get("certificate"))
 
     @override_settings(EOX_HOOKS_DEFINITIONS={"post_certificate_revoke": {}})
@@ -422,9 +429,10 @@ class TestCertificateEventsHandler(TestCase):
             certificate=self.certificate,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.certificate, action_handler.call_args.kwargs.get("certificate"))
 
 
@@ -482,7 +490,8 @@ class TestCohortEventsHandler(TestCase):
             cohort=self.cohort,
         )
 
-        self.assertDictContainsSubset(
-            expected_metadata_subset, attr.asdict(action_handler.call_args.kwargs.get("metadata")),
-        )
+        actual_dict = attr.asdict(action_handler.call_args.kwargs.get("metadata"))
+        for key, value in expected_metadata_subset.items():
+            self.assertIn(key, actual_dict)
+            self.assertEqual(actual_dict[key], value)
         self.assertEqual(self.cohort, action_handler.call_args.kwargs.get("cohort"))
