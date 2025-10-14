@@ -6,37 +6,37 @@
 #
 amqp==5.3.1
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   kombu
-asgiref==3.8.1
+asgiref==3.10.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   django
-astroid==3.3.10
+astroid==3.3.11
     # via pylint
-attrs==25.3.0
+attrs==25.4.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   openedx-events
-billiard==4.2.1
+billiard==4.2.2
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
 celery==5.5.3
     # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.txt
-certifi==2025.4.26
+    #   -c /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/constraints.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
+certifi==2025.10.5
     # via requests
-cffi==1.17.1
+cffi==2.0.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   pynacl
-charset-normalizer==3.4.2
+charset-normalizer==3.4.3
     # via requests
-click==8.2.1
+click==8.3.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
@@ -44,23 +44,23 @@ click==8.2.1
     #   edx-django-utils
 click-didyoumean==0.3.1
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
-click-plugins==1.1.1
+click-plugins==1.1.1.2
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
 click-repl==0.3.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
-coverage==7.8.2
+coverage==7.10.7
     # via -r requirements/test.in
 dill==0.4.0
     # via pylint
     # via
-    #   -c https://raw.githubusercontent.com/openedx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r requirements/base.txt
+    #   -c /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/constraints.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   django-crum
     #   django-waffle
     #   djangorestframework
@@ -68,91 +68,89 @@ dill==0.4.0
     #   openedx-events
 django-crum==0.7.9
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-django-utils
-django-waffle==4.2.0
+django-waffle==5.0.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-django-utils
-djangorestframework==3.16.0
-    # via -r requirements/base.txt
-dnspython==2.7.0
+djangorestframework==3.16.1
+    # via -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
+dnspython==2.8.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   pymongo
 edx-ccx-keys==2.0.2
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   openedx-events
-edx-django-utils==8.0.0
+edx-django-utils==8.0.1
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   openedx-events
 edx-opaque-keys[django]==3.0.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-ccx-keys
     #   openedx-events
-fastavro==1.11.1
+fastavro==1.12.1
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   openedx-events
-idna==3.10
+idna==3.11
     # via requests
 iniconfig==2.1.0
     # via pytest
-isort==6.0.1
+isort==6.1.0
     # via pylint
 kombu==5.5.4
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
 mccabe==0.7.0
     # via pylint
 mock==5.2.0
     # via -r requirements/test.in
-openedx-events==10.2.1
-    # via -r requirements/base.txt
+openedx-events==10.5.0
+    # via -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
 packaging==25.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   kombu
     #   pytest
-pbr==6.1.1
-    # via
-    #   -r requirements/base.txt
-    #   stevedore
-platformdirs==4.3.8
+platformdirs==4.5.0
     # via pylint
 pluggy==1.6.0
     # via pytest
-prompt-toolkit==3.0.51
+prompt-toolkit==3.0.52
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   click-repl
-psutil==7.0.0
+psutil==7.1.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-django-utils
-pycodestyle==2.13.0
+pycodestyle==2.14.0
     # via -r requirements/test.in
-pycparser==2.22
+pycparser==2.23
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   cffi
-pygments==2.19.1
+pygments==2.19.2
     # via pytest
-pylint==3.3.7
-    # via -r requirements/test.in
-pymongo==4.13.0
+pylint==3.3.9
     # via
-    #   -r requirements/base.txt
+    #   -c /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/constraints.txt
+    #   -r requirements/test.in
+pymongo==4.15.3
+    # via
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-opaque-keys
-pynacl==1.5.0
+pynacl==1.6.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-django-utils
-pytest==8.4.0
+pytest==8.4.2
     # via
     #   -r requirements/test.in
     #   pytest-django
@@ -160,51 +158,49 @@ pytest-django==4.11.1
     # via -r requirements/test.in
 python-dateutil==2.9.0.post0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   celery
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via -r requirements/test.in
-requests==2.32.3
+requests==2.32.5
     # via -r requirements/test.in
 six==1.17.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-ccx-keys
     #   python-dateutil
 sqlparse==0.5.3
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   django
-stevedore==5.4.1
+stevedore==5.5.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-django-utils
     #   edx-opaque-keys
-testfixtures==8.3.0
+testfixtures==9.2.0
     # via -r requirements/test.in
 tomlkit==0.13.3
     # via pylint
-typing-extensions==4.14.0
+typing-extensions==4.15.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   edx-opaque-keys
 tzdata==2025.2
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   kombu
-urllib3==2.2.3
-    # via
-    #   -c https://raw.githubusercontent.com/openedx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   requests
+urllib3==2.5.0
+    # via requests
 vine==5.1.0
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.2.13
+wcwidth==0.2.14
     # via
-    #   -r requirements/base.txt
+    #   -r /home/jignaciopm/eduNEXT/eox-plugins/eox-hooks/requirements/base.txt
     #   prompt-toolkit
 
 # The following packages are considered to be unsafe in a requirements file:
