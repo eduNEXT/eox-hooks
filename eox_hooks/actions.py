@@ -11,7 +11,14 @@ from eox_hooks.edxapp_wrapper.courses import get_item_not_found_exception, get_l
 from eox_hooks.edxapp_wrapper.models import get_certificate_model
 from eox_hooks.serializers import CertificateSerializer, CourseSerializer, UserSerializer
 from eox_hooks.tasks import create_enrollments_for_program
-from eox_hooks.utils import FakeRequest, _get_course, flatten_dict, get_trigger_settings
+
+from eox_hooks.utils import (  # isort: skip
+    FakeRequest,
+    _get_course,
+    flatten_dict,
+    get_trigger_settings,
+    unflatten_dict,
+)
 
 COURSE_PASSING_GRADE = 1
 ItemNotFoundError = get_item_not_found_exception()
@@ -38,6 +45,9 @@ def post_to_webhook_url(**kwargs):
                 },
                 "extra_fields": {
                     "email_message": "Something extra."
+                },
+                "headers": {
+                    "Authorization": "Token token=YOUR_API_KEY"
                 }
             }
             ...
@@ -58,23 +68,42 @@ def post_to_webhook_url(**kwargs):
     webhook_url = trigger_settings.get("url", "")
     fields = trigger_settings.get("fields", {})
     extra_fields = trigger_settings.get("extra_fields", {})
+    headers = trigger_settings.get("headers", {})
+
+    if trigger_settings.get("use_course_information", False):
+        certificate = get_certificate(**kwargs)
+        course = _get_course(certificate.course_id)
+        kwargs.update({"course": course})
 
     data = get_request_fields(fields, extra_fields, **kwargs)
 
     if trigger_settings.get("send_certificate_data", False):
-        certificate = kwargs.get("certificate", {})
-        certificate = GeneratedCertificate.objects.get(
-            user__id=certificate.user.id, course_id=certificate.course.course_key,
-        )
+        certificate = get_certificate(**kwargs)
         extended_data = get_extended_certificate_data(certificate)
         data.update(extended_data)
 
-    response = requests.post(webhook_url, flatten_dict(data))  # pylint: disable=W3101
+    if trigger_settings.get("unflatten_data", False):
+        data = unflatten_dict(data)
+        response = requests.post(webhook_url, json=data, headers=headers)  # pylint: disable=W3101
+    else:
+        response = requests.post(webhook_url, flatten_dict(data), headers=headers)  # pylint: disable=W3101
     log.info(
         "post_to_webhook_url request information: %s",
         response.text,
     )
     return response.status_code == 200
+
+
+def get_certificate(**kwargs):
+    """
+    Retrieve the GeneratedCertificate instance from the kwargs.
+    """
+    certificate_data = kwargs.get("certificate")
+    certificate = GeneratedCertificate.objects.get(
+        user__id=certificate_data.user.id,
+        course_id=certificate_data.course.course_key,
+    )
+    return certificate
 
 
 def get_extended_certificate_data(certificate):

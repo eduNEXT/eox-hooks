@@ -70,3 +70,52 @@ def _get_course(course_key):
     from xmodule.modulestore.django import modulestore  # pylint: disable=import-error,import-outside-toplevel
 
     return modulestore().get_course(course_key)
+
+
+def unflatten_dict(flat_dict, delimiter='.'):
+    """
+    Expands a flat dictionary with delimited keys into a nested dictionary structure.
+
+    This function iterates through keys containing a specific delimiter (default is '.')
+    and creates the corresponding nested dictionary tree. It is particularly useful
+    for converting flat configuration files or environment variables into structured
+    JSON-like objects.
+
+    Args:
+        flat_dict (dict): The dictionary with flat, delimited keys.
+        delimiter (str): The character used to separate nested levels. Defaults to '.'.
+
+    Returns:
+        dict: A deeply nested dictionary representing the original hierarchy.
+
+    Example:
+        >>> flat_data = {
+        ...     "base.footer.logo_url": "https://edunext.co",
+        ...     "base.footer.copy": "All rights reserved",
+        ...     "foo": "eduNEXT"
+        ... }
+        >>> unflatten_dict(flat_data)
+        {
+            'base': {
+                'footer': {
+                    'logo_url': 'https://edunext.co',
+                    'copy': 'All rights reserved'
+                }
+            },
+            'foo': 'eduNEXT'
+        }
+    """
+    unflattened = {}
+
+    for key, value in flat_dict.items():
+        parts = key.split(delimiter)
+        target = unflattened
+
+        # Traverse/create the path for all parts except the leaf
+        for part in parts[:-1]:
+            target = target.setdefault(part, {})
+
+        # Assign the final value to the leaf key
+        target[parts[-1]] = value
+
+    return unflattened
