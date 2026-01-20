@@ -3,7 +3,7 @@ Test utils functions.
 """
 from django.test import TestCase
 
-from eox_hooks.utils import flatten_dict
+from eox_hooks.utils import flatten_dict, unflatten_dict
 
 
 def custom_action_mock(**kwargs):  # pylint: disable=unused-argument
@@ -51,3 +51,55 @@ class TestUtils(TestCase):
         result_data = flatten_dict(data)
 
         self.assertEqual(expected_data, result_data)
+
+    def test_unflatten_dict_default_delimiter(self):
+        """
+        Used to test unflatten_dict function with default delimiter
+
+        This should return a nested dictionary matching the original hierarchy.
+        """
+        flat_data = {
+            "base.footer.logo_url": "https://edunext.co",
+            "base.footer.copy": "All rights reserved",
+            "foo": "eduNEXT",
+        }
+        expected_nested = {
+            "base": {
+                "footer": {
+                    "logo_url": "https://edunext.co",
+                    "copy": "All rights reserved",
+                }
+            },
+            "foo": "eduNEXT",
+        }
+
+        nested = unflatten_dict(flat_data)
+
+        self.assertEqual(expected_nested, nested)
+
+    def test_unflatten_dict_custom_delimiter(self):
+        """
+        Used to test unflatten_dict function with custom delimiter
+
+        This should return a nested dictionary even when using a non-default delimiter.
+        """
+        flat_data = {
+            "user|profile|name": "Alice",
+            "user|profile|age": 30,
+            "course|id": "C001",
+        }
+        expected_nested = {
+            "user": {
+                "profile": {
+                    "name": "Alice",
+                    "age": 30,
+                }
+            },
+            "course": {
+                "id": "C001",
+            },
+        }
+
+        nested = unflatten_dict(flat_data, delimiter="|")
+
+        self.assertEqual(expected_nested, nested)

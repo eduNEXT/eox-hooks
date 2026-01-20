@@ -12,7 +12,12 @@ from opaque_keys.edx.keys import CourseKey
 # pylint: disable=line-too-long
 from openedx_events.learning.data import CertificateData, CourseData, CourseEnrollmentData, UserData, UserPersonalData
 
-from eox_hooks.actions import get_request_fields, trigger_enrollments_creation, trigger_grades_assignment
+from eox_hooks.actions import (
+    get_request_fields,
+    post_to_webhook_url,
+    trigger_enrollments_creation,
+    trigger_grades_assignment,
+)
 
 
 class TestPostToWebhookUrl(TestCase):
@@ -80,6 +85,57 @@ class TestPostToWebhookUrl(TestCase):
         result_data = get_request_fields(fields, extra_fields, **self.kwargs)
 
         self.assertEqual(expected_data, result_data)
+
+    @patch('eox_hooks.actions.requests.post')
+    @patch('eox_hooks.actions.get_trigger_settings')
+    def test_post_to_webhook_url_with_custom_headers(self, mock_settings, mock_post):
+        """
+        Used to test post_to_webhook_url with custom headers.
+
+        This should verify that the headers defined in the configuration are passed
+        correctly to the requests call.
+        """
+        mock_settings.return_value = {
+            "url": "https://webhook.site/test",
+            "headers": {
+                "Authorization": "Token token=secret_key_123",
+                "X-Custom-Header": "CustomValue"
+            },
+            "fields": {"email": "user.pii.email"}
+        }
+        mock_post.return_value.status_code = 200
+
+        self.kwargs['trigger_event'] = 'post_certificate_creation'
+        result = post_to_webhook_url(**self.kwargs)
+
+        _, kwargs = mock_post.call_args
+        self.assertEqual(kwargs['headers']['Authorization'], "Token token=secret_key_123")
+        self.assertEqual(kwargs['headers']['X-Custom-Header'], "CustomValue")
+        self.assertTrue(result)
+
+    @patch('eox_hooks.actions.requests.post')
+    @patch('eox_hooks.actions.get_trigger_settings')
+    def test_post_to_webhook_url_without_headers_in_config(self, mock_settings, mock_post):
+        """
+        Used to test post_to_webhook_url without headers in config.
+
+        This should verify that the function does not fail if the 'headers' field
+        does not exist in the configuration (backward compatibility).
+        """
+        mock_settings.return_value = {
+            "url": "https://webhook.site/test",
+            "fields": {"username": "user.pii.username"}
+        }
+        mock_post.return_value.status_code = 200
+
+        self.kwargs['trigger_event'] = 'post_certificate_creation'
+
+        result = post_to_webhook_url(**self.kwargs)
+
+        _, kwargs = mock_post.call_args
+        self.assertIn('headers', kwargs)
+        self.assertEqual(kwargs['headers'], {})
+        self.assertTrue(result)
 
 
 class TriggerEnrollmentsTest(TestCase):
